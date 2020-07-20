@@ -3,6 +3,6 @@
     color: $value;
   }
   .bg-#{$key} {
-    color: $value;
+    background-color: $value;
   }
 }

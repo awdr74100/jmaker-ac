@@ -1,0 +1,19 @@
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s;
+
+  &--block {
+    width: 100%;
+  }
+  &--secondary {
+    color: #fff;
+    background-color: theme-color('secondary');
+    border: 1px solid theme-color('secondary');
+    &:hover {
+      background-color: darken(theme-color('secondary'), 5%);
+    }
+  }
+}

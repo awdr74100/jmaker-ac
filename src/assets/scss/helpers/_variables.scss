@@ -15,6 +15,7 @@ $spacies: (
   '3': 20px,
   '4': 30px,
   '5': 60px,
+  "6": 100px,
   'auto': auto,
 );
 
@@ -22,5 +23,6 @@ $property: 'm', 'p';
 $sides: '', 't', 'b', 'l', 'r', 'x', 'y';
 
 $theme-colors: (
-  primary: #4e626b,
+  "primary": #4e626b,
+  "secondary": #3a3a3a
 );
