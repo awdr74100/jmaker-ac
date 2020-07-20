@@ -1,0 +1,26 @@
+$gutter-width: 30px;
+$grid-sum: 12;
+$grid-breakpoints: (
+  '': false,
+  // sm: 576px,
+  md: 768px,
+  // lg: 992px,
+  // xl: 1200px,
+);
+
+$spacies: (
+  '0': 0px,
+  '1': 5px,
+  '2': 10px,
+  '3': 20px,
+  '4': 30px,
+  '5': 60px,
+  'auto': auto,
+);
+
+$property: 'm', 'p';
+$sides: '', 't', 'b', 'l', 'r', 'x', 'y';
+
+$theme-colors: (
+  primary: #4e626b,
+);
