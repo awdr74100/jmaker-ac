@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Login from '@/views/Login.vue';
+import Login from '@/views/Login/index.vue';
 
 Vue.use(VueRouter);
 
@@ -16,8 +16,8 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'Admin',
-    component: () => import(/* webpackChunkName: "admin" */ '@/views/admin/Dashboard.vue'),
+    name: 'admin',
+    component: () => import(/* webpackChunkName: "admin" */ '@/views/Dashboard/index.vue'),
   },
 ];
 

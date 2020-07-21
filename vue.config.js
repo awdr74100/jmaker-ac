@@ -7,7 +7,6 @@ module.exports = {
     resolve: {
       alias: {
         '@img': '@/assets/img',
-        '@component': '@/components',
       },
     },
   },

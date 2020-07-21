@@ -13,9 +13,7 @@
 // layout
 @import './layout/grid';
 
-// views
-@import './views/login';
-@import './views/admin/dashboard';
-
 // component
-@import './component/common/button';
+@import './component/button';
+@import './component/Login/loginform';
+
