@@ -1,40 +1,40 @@
 <template>
-  <div class="loginform p-4 mt-6 mb-6">
+  <div class="loginForm p-4 mt-6 mb-6">
     <div class="logo"></div>
-    <h1 class="loginform__title mt-4">登入管理員帳號</h1>
+    <h1 class="loginForm__title mt-4">登入管理員帳號</h1>
     <form @submit.prevent="login">
-      <div class="loginform__section mt-4">
+      <div class="loginForm__section mt-4">
         <label
           for="inputEmail"
-          class="loginform__label"
-          :class="{ 'loginform__label--active': inputState.email }"
+          class="loginForm__label"
+          :class="{ 'loginForm__label--active': inputStatus.email }"
           >Email</label
         >
         <input
           type="email"
-          class="loginform__input loginform__input--email"
+          class="loginForm__input loginForm__input--email"
           id="inputEmail"
           autocomplete="off"
           v-model="admin.email"
-          @focus="inputState.email = true"
-          @blur="changeInputState('email')"
+          @focus="inputStatus.email = true"
+          @blur="changeInputStatus('email')"
         />
       </div>
-      <div class="loginform__section mt-4">
+      <div class="loginForm__section mt-4">
         <label
           for="inputPassword"
-          class="loginform__label"
-          :class="{ 'loginform__label--active': inputState.password }"
+          class="loginForm__label"
+          :class="{ 'loginForm__label--active': inputStatus.password }"
           >Password</label
         >
         <input
           :type="passwordType"
-          class="loginform__input loginform__input--password"
+          class="loginForm__input loginForm__input--password"
           id="inputPassword"
           autocomplete="off"
           v-model="admin.password"
-          @focus="inputState.password = true"
-          @blur="changeInputState('password')"
+          @focus="inputStatus.password = true"
+          @blur="changeInputStatus('password')"
         />
         <span
           class="hide-btn"
@@ -44,7 +44,7 @@
           <i class="far fa-eye" v-else></i>
         </span>
       </div>
-      <button class="btn btn--block btn--secondary loginform__btn mt-4" @click.prevent="login">
+      <button class="btn btn--block btn--secondary loginForm__btn mt-4" @click.prevent="login">
         登入
       </button>
     </form>
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       passwordType: 'password',
-      inputState: {
+      inputStatus: {
         email: false,
         password: false,
       },
@@ -67,10 +67,10 @@ export default {
     };
   },
   methods: {
-    changeInputState(input) {
+    changeInputStatus(input) {
       const vm = this;
       if (vm.admin[input] !== '') return;
-      vm.inputState[input] = false;
+      vm.inputStatus[input] = false;
     },
     login() {
       const vm = this;

@@ -7,16 +7,42 @@
     <nav class="dashboardSidebar__nav">
       <ul class="dashboardSidebar__list">
         <li class="dashboardSidebar__item">
-          <a href="#" class="dashboardSidebar__link"
-            ><i class="fas fa-check mr-3 pl-3 py-3"></i> 實體用戶註冊</a
+          <router-link
+            to="/admin"
+            class="dashboardSidebar__link"
+            :class="{ 'dashboardSidebar__link--active': visibility === 'RegisterUser' }"
+            @click.native="sidebarToggle"
+            ><i class="fas fa-check mr-3 pl-3 py-3"></i> 實體用戶註冊</router-link
           >
         </li>
         <li class="dashboardSidebar__item">
-          <a href="#" class="dashboardSidebar__link dashboardSidebar__link--active"
-            ><i class="fa fa-tasks mr-3 pl-3 py-3"></i> 調整用戶權限</a
+          <router-link
+            to="/admin/adjust"
+            class="dashboardSidebar__link"
+            :class="{ 'dashboardSidebar__link--active': visibility === 'AdjustUser' }"
+            @click.native="sidebarToggle"
+            ><i class="fa fa-tasks mr-3 pl-3 py-3"></i> 調整用戶權限</router-link
           >
         </li>
       </ul>
     </nav>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    sidebarToggle() {
+      if (window.innerWidth >= 768) return;
+      const vm = this;
+      const status = vm.$store.state.openSidebar;
+      vm.$store.commit('SIDEBARTOGGLE', !status);
+    },
+  },
+  computed: {
+    visibility() {
+      return this.$route.name;
+    },
+  },
+};
+</script>

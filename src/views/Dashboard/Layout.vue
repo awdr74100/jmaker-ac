@@ -9,6 +9,7 @@
       </div>
       <div class="dashboardMainLayout">
         <div class="dashboardMainLayout__drawer" @click="sidebarToggle"></div>
+        <router-view></router-view>
       </div>
     </div>
   </div>

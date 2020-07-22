@@ -2,10 +2,8 @@ $gutter-width: 30px;
 $grid-sum: 12;
 $grid-breakpoints: (
   '': false,
-  // sm: 576px,
   'md': 768px,
-  // lg: 992px,
-  // xl: 1200px,
+  'lg': 992px,
 );
 
 $spacies: (
@@ -15,7 +13,7 @@ $spacies: (
   '3': 15px,
   '4': 30px,
   '5': 60px,
-  "6": 100px,
+  '6': 100px,
   'auto': auto,
 );
 
@@ -23,7 +21,9 @@ $property: 'm', 'p';
 $sides: '', 't', 'b', 'l', 'r', 'x', 'y';
 
 $theme-colors: (
-  "primary": #4e626b,
-  "secondary": #3a3a3a,
-  // "black": #272727de,
+  'primary': #4e626b,
+  'secondary': #3a3a3a,
+  'white': #fff,
+  'danger': rgb(231, 60, 60),
+  'success': rgb(5, 218, 16),
 );

@@ -1,0 +1,20 @@
+.userTable {
+  width: 100%;
+  overflow-x: auto;
+
+  .table {
+    width: 100%;
+    white-space: nowrap;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+  }
+  th {
+    padding: 18px 15px;
+  }
+  td {
+    padding: 11px 15px;
+  }
+  tr {
+    border-bottom: 1px solid #dadada;
+  }
+}

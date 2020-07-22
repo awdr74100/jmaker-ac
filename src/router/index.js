@@ -16,8 +16,19 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'admin',
     component: () => import(/* webpackChunkName: "admin" */ '@/views/Dashboard/Layout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'RegisterUser',
+        component: () => import(/* webpackChunkName: "registeruser" */ '@/components/Dashboard/RegisterUser.vue'),
+      },
+      {
+        path: 'adjust',
+        name: 'AdjustUser',
+        component: () => import(/* webpackChunkName: "adjustuser" */ '@/components/Dashboard/AdjustUser.vue'),
+      },
+    ],
   },
 ];
 

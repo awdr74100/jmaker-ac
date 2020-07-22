@@ -11,12 +11,15 @@
   &--block {
     width: 100%;
   }
-  &--secondary {
+}
+
+@each $key, $value in $theme-colors {
+  .btn--#{$key} {
     color: #fff;
-    background-color: theme-color('secondary');
-    border: 1px solid theme-color('secondary');
+    background-color: $value;
+    border: 1px solid $value;
     &:hover {
-      background-color: darken(theme-color('secondary'), 5%);
+      background-color: darken($value, 10%);
     }
   }
 }
