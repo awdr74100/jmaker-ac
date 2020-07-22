@@ -1,0 +1,58 @@
+.dashboardHeader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__menu {
+    padding: 26px 26px 26px 15px;
+    cursor: pointer;
+  }
+  &__logo {
+    width: 180px;
+    height: 48px;
+    background-image: url('~@img/logo-name.png');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+  &__input {
+    display: inline-block;
+    flex-grow: 1;
+    height: 46px;
+    border: none;
+    background-color: #ffffff2f;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff;
+    padding-left: 20px;
+    @include desktop {
+      width: 300px;
+      flex-grow: 0;
+      background-image: url('~@img/search.svg');
+      background-position: 16px center;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      padding-left: 52px;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.623);
+      font-family: 'Microsoft JhengHei';
+    }
+  }
+  &__btn {
+    display: inline-block;
+    padding: 25px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s;
+    &:hover {
+      background-color: #ffffff2f;
+    }
+  }
+}

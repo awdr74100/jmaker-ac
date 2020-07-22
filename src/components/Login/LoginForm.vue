@@ -1,5 +1,5 @@
 <template>
-  <div class="loginform p-3 mt-6 mb-6">
+  <div class="loginform p-4 mt-6 mb-6">
     <div class="logo"></div>
     <h1 class="loginform__title mt-4">登入管理員帳號</h1>
     <form @submit.prevent="login">

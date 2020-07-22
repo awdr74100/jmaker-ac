@@ -5,6 +5,7 @@
 
 // helpers
 @import './helpers/variables';
+@import './helpers/mixins';
 @import './helpers/functions';
 @import './helpers/spacing';
 @import './helpers/colors';
@@ -12,8 +13,11 @@
 
 // layout
 @import './layout/grid';
+@import './layout/Dashboard/dashboardLayout';
+@import './layout/Dashboard/dashboardHeader';
+@import './layout/Dashboard/dashboardSidebar';
 
 // component
 @import './component/button';
+@import './component/common/hamburger';
 @import './component/Login/loginform';
-

@@ -1,0 +1,55 @@
+.dashboardHeaderLayout {
+  position: fixed;
+  width: 100%;
+}
+
+.dashboardSidebarLayout {
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  width: 280px;
+  background-color: #fafafa;
+  border-right: 1px solid #dadada;
+  transition: transform 0.3s;
+  transform: translateX(-280px);
+  z-index: 10;
+  @include desktop {
+    top: 66px;
+  }
+
+  .openSidebar & {
+    transform: translateX(0px);
+  }
+}
+
+.dashboardMainLayout {
+  width: 100%;
+  position: relative;
+  margin-top: 66px;
+  margin-left: 0px;
+  height: calc(100vh - 66px);
+  transition: all 0.3s;
+  @include desktop {
+    .openSidebar & {
+      margin-left: 280px;
+    }
+  }
+
+  &__drawer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s;
+    z-index: -10;
+    @include desktop {
+      display: none;
+    }
+
+    .openSidebar & {
+      background-color: rgba(0, 0, 0, 0.705);
+      z-index: 5;
+    }
+  }
+}
