@@ -20,9 +20,11 @@
 
 // component
 @import './component/button';
+@import './component/common/alert';
 @import './component/common/hamburger';
 @import './component/common/pagination';
 @import './component/Login/loginForm';
 @import './component/Dashboard/registerUser';
+@import './component/Dashboard/adjustUser';
 @import './component/Dashboard/panelGroup';
 @import './component/Dashboard/userTable';

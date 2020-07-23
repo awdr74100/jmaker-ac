@@ -73,8 +73,9 @@ export default {
       vm.inputStatus[input] = false;
     },
     login() {
-      const vm = this;
-      vm.$store.dispatch('admin/login', vm.admin);
+      this.$store.dispatch('alert/updateMessage', { message: '登入成功', status: 'success' });
+      // const vm = this;
+      // vm.$store.dispatch('admin/login', vm.admin);
     },
   },
 };

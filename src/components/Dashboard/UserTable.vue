@@ -19,7 +19,7 @@
           <td>2020-05-24 18:26:21</td>
           <td>4A6G0068</td>
           <td>藍奕濡</td>
-          <td class="text-success">匿名用戶</td>
+          <td class="text-danger">匿名用戶</td>
           <td class="text-center">
             <button class="btn btn--primary">註冊</button>
             <button class="btn btn--danger ml-1">刪除</button>
