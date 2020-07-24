@@ -16,17 +16,19 @@ const routes = [
   },
   {
     path: '/admin',
-    component: () => import(/* webpackChunkName: "admin" */ '@/views/Dashboard/Layout.vue'),
+    component: () => import('@/views/Dashboard/Layout.vue'),
     children: [
       {
         path: '',
         name: 'RegisterUser',
-        component: () => import(/* webpackChunkName: "registeruser" */ '@/components/Dashboard/RegisterUser.vue'),
+        meta: { requiresAuth: true },
+        component: () => import('@/components/Dashboard/RegisterUser.vue'),
       },
       {
         path: 'adjust',
         name: 'AdjustUser',
-        component: () => import(/* webpackChunkName: "adjustuser" */ '@/components/Dashboard/AdjustUser.vue'),
+        meta: { requiresAuth: true },
+        component: () => import('@/components/Dashboard/AdjustUser.vue'),
       },
     ],
   },

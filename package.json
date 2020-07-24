@@ -13,6 +13,7 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
+    "vue-progressbar": "^0.7.5",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },

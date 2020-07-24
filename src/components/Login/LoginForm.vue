@@ -68,14 +68,11 @@ export default {
   },
   methods: {
     changeInputStatus(input) {
-      const vm = this;
-      if (vm.admin[input] !== '') return;
-      vm.inputStatus[input] = false;
+      if (this.admin[input] !== '') return;
+      this.inputStatus[input] = false;
     },
     login() {
-      this.$store.dispatch('alert/updateMessage', { message: '登入成功', status: 'success' });
-      // const vm = this;
-      // vm.$store.dispatch('admin/login', vm.admin);
+      this.$store.dispatch('admin/login', this.admin);
     },
   },
 };

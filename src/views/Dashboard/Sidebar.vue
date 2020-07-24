@@ -2,7 +2,7 @@
   <div class="dashboardSidebar text-secondary">
     <div class="dashboardSidebar__account">
       <i class="fa fa-user-circle"></i>
-      <span class="ml-3">藍奕濡</span>
+      <span class="ml-3">{{ nickname }}</span>
     </div>
     <nav class="dashboardSidebar__nav">
       <ul class="dashboardSidebar__list">
@@ -42,6 +42,11 @@ export default {
   computed: {
     visibility() {
       return this.$route.name;
+    },
+    nickname() {
+      const { nickname } = JSON.parse(localStorage.getItem('admin'));
+      if (nickname === 'root') return '系統管理員';
+      return nickname;
     },
   },
 };

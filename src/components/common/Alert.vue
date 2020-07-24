@@ -2,13 +2,14 @@
   <div class="alert">
     <ul class="list">
       <li
-        class="list__item list__item--danger mt-2"
+        class="list__item mt-2"
         :class="`list__item--${item.status}`"
         v-for="(item, index) in messages"
         :key="index"
       >
         <div class="icon">
-          <i class="fas fa-times text-white"></i>
+          <i class="fas fa-check text-white" v-if="item.status === 'success'"></i>
+          <i class="fas fa-times text-white" v-if="item.status === 'danger'"></i>
         </div>
         <p class="mx-3">{{ item.message }}</p>
         <button class="close mr-3" @click.prevent="removeMessage(index)">

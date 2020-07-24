@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import admin from './modules/admin';
 import alert from './modules/alert';
+import users from './modules/users';
 
 Vue.use(Vuex);
 
@@ -18,5 +19,6 @@ export default new Vuex.Store({
   modules: {
     admin,
     alert,
+    users,
   },
 });

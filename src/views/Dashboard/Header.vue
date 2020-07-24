@@ -5,13 +5,14 @@
     </div>
     <a href="#" class="dashboardHeader__logo ml-3"></a>
     <input type="text" class="dashboardHeader__input ml-md-4" placeholder="檢查學號的當前狀態" />
-    <a href="#" class="dashboardHeader__btn ml-auto"
+    <a href="#" class="dashboardHeader__btn ml-auto" @click.prevent="logout"
       >登出<i class="fas fa-sign-out-alt ml-2"></i
     ></a>
   </header>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Hamburger from '@/components/common/Hamburger.vue';
 
 export default {
@@ -24,6 +25,7 @@ export default {
       const status = vm.$store.state.openSidebar;
       vm.$store.commit('SIDEBARTOGGLE', !status);
     },
+    ...mapActions('admin', ['logout']),
   },
 };
 </script>
