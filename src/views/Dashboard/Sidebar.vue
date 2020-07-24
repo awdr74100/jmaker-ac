@@ -34,9 +34,8 @@ export default {
   methods: {
     sidebarToggle() {
       if (window.innerWidth >= 768) return;
-      const vm = this;
-      const status = vm.$store.state.openSidebar;
-      vm.$store.commit('SIDEBARTOGGLE', !status);
+      const status = this.$store.state.openSidebar;
+      this.$store.commit('SIDEBARTOGGLE', !status);
     },
   },
   computed: {

@@ -6,6 +6,7 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
+import datetime from './filter/datetime';
 
 const VueProgressOptions = {
   color: '#47ae74',
@@ -14,6 +15,8 @@ const VueProgressOptions = {
 
 Vue.use(VueAxios, axios);
 Vue.use(VueProgressBar, VueProgressOptions);
+
+Vue.filter('datetime', datetime);
 
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;

@@ -6,7 +6,7 @@
     <a href="#" class="dashboardHeader__logo ml-3"></a>
     <input type="text" class="dashboardHeader__input ml-md-4" placeholder="檢查學號的當前狀態" />
     <a href="#" class="dashboardHeader__btn ml-auto" @click.prevent="logout"
-      >登出<i class="fas fa-sign-out-alt ml-2"></i
+      ><span>登出</span><span><i class="fas fa-sign-out-alt ml-2"></i></span
     ></a>
   </header>
 </template>
@@ -21,9 +21,8 @@ export default {
   },
   methods: {
     sidebarToggle() {
-      const vm = this;
-      const status = vm.$store.state.openSidebar;
-      vm.$store.commit('SIDEBARTOGGLE', !status);
+      const status = this.$store.state.openSidebar;
+      this.$store.commit('SIDEBARTOGGLE', !status);
     },
     ...mapActions('admin', ['logout']),
   },

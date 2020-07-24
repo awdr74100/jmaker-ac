@@ -6,7 +6,7 @@
           <i class="fas fa-users fa-2x"></i>
           <div class="panelGroup__info">
             <p class="mb-2">註冊人數</p>
-            <span>13</span>
+            <span>{{ allUsers }}</span>
           </div>
         </div>
       </li>
@@ -15,7 +15,7 @@
           <i class="fas fa-user-check fa-2x"></i>
           <div class="panelGroup__info">
             <p class="mb-2">實體用戶</p>
-            <span>13</span>
+            <span>{{ physicalUser }}</span>
           </div>
         </div>
       </li>
@@ -24,7 +24,7 @@
           <i class="fas fa-user-minus fa-2x"></i>
           <div class="panelGroup__info">
             <p class="mb-2">匿名用戶</p>
-            <span>13</span>
+            <span>{{ anonymousUser }}</span>
           </div>
         </div>
       </li>
@@ -33,10 +33,36 @@
           <i class="fas fa-user-alt-slash fa-2x"></i>
           <div class="panelGroup__info">
             <p class="mb-2">移除權限</p>
-            <span>13</span>
+            <span>{{ removeUser }}</span>
           </div>
         </div>
       </li>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    users: Array,
+  },
+  computed: {
+    allUsers() {
+      const vm = this;
+      return vm.users.length;
+    },
+    physicalUser() {
+      const vm = this;
+      return vm.users.filter((item) => item.register_at !== null).length;
+    },
+    anonymousUser() {
+      const vm = this;
+      return vm.users.filter((item) => item.register_at === null).length;
+    },
+    removeUser() {
+      const vm = this;
+      return vm.users.filter((item) => !item.auth).length;
+    },
+  },
+};
+</script>
