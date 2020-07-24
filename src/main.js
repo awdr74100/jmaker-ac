@@ -2,6 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueProgressBar from 'vue-progressbar';
+import VModal from 'vue-js-modal';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -15,6 +16,7 @@ const VueProgressOptions = {
 
 Vue.use(VueAxios, axios);
 Vue.use(VueProgressBar, VueProgressOptions);
+Vue.use(VModal);
 
 Vue.filter('datetime', datetime);
 

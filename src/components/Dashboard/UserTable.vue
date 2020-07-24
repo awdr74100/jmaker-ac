@@ -4,7 +4,7 @@
     <table class="table text-info">
       <thead class="bg-primary text-white">
         <tr>
-          <th>No</th>
+          <th width="60">No</th>
           <th width="160">識別碼</th>
           <th>註冊時間</th>
           <th>學號</th>
@@ -22,8 +22,8 @@
           <td>unknown</td>
           <td class="text-danger">匿名用戶</td>
           <td class="text-center">
-            <button class="btn btn--primary">註冊</button>
-            <button class="btn btn--danger ml-1">刪除</button>
+            <button class="btn btn--primary" @click.prevent="open">註冊</button>
+            <button class="btn btn--danger ml-1" @click="close">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -35,6 +35,14 @@
 export default {
   props: {
     users: Array,
+  },
+  methods: {
+    open() {
+      this.$modal.show('example');
+    },
+    close() {
+      this.$modal.hide('example');
+    },
   },
 };
 </script>

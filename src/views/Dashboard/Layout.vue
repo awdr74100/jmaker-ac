@@ -12,11 +12,14 @@
         <router-view></router-view>
       </div>
     </div>
+    <!--Modal -->
+    <Modal />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Modal from '@/components/Dashboard/Modal.vue';
 import Header from './Header.vue';
 import Sidebar from './Sidebar.vue';
 
@@ -25,6 +28,7 @@ export default {
   components: {
     Header,
     Sidebar,
+    Modal,
   },
   methods: {
     sidebarToggle() {

@@ -23,7 +23,7 @@
         <a
           href="#"
           class="next"
-          :class="{ 'next--disabled': nowPage === pages }"
+          :class="{ 'next--disabled': nowPage === pages || pages === 0 }"
           @click.prevent="togglePage(nowPage + 1)"
           ><i class="fas fa-chevron-right"></i
         ></a>
