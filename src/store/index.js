@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import admin from './modules/admin';
 import alert from './modules/alert';
 import users from './modules/users';
+import modal from './modules/modal';
 
 Vue.use(Vuex);
 
@@ -20,5 +21,6 @@ export default new Vuex.Store({
     admin,
     alert,
     users,
+    modal,
   },
 });

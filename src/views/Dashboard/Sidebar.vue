@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 export default {
   methods: {
     sidebarToggle() {
@@ -43,7 +44,7 @@ export default {
       return this.$route.name;
     },
     nickname() {
-      const { nickname } = JSON.parse(localStorage.getItem('admin'));
+      const { nickname } = JSON.parse(localStorage.getItem('account'));
       if (nickname === 'root') return '系統管理員';
       return nickname;
     },

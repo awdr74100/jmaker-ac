@@ -6,29 +6,26 @@ export default {
   },
   actions: {
     updateMessage({ commit, dispatch }, { message, status }) {
-      const timestamp = Date.now();
-      commit('UPDATEMESSAGE', { message, status, timestamp });
-      dispatch('removeMessageWithTiming', timestamp);
+      const primaryKey = Date.now();
+      commit('UPDATEMESSAGE', { message, status, primaryKey });
+      dispatch('removeMessageWithTiming', primaryKey);
     },
-    removeMessageWithTiming({ commit }, timestamp) {
+    removeMessageWithTiming({ commit }, primaryKey) {
       setTimeout(() => {
-        commit('REMOVEMESSAGEWITHTIMING', timestamp);
+        commit('REMOVEMESSAGEWITHTIMING', primaryKey);
       }, 3000);
     },
   },
   mutations: {
-    UPDATEMESSAGE({ messages }, { message, status, timestamp }) {
-      messages.push({ message, status, timestamp });
+    UPDATEMESSAGE(state, { message, status, primaryKey }) {
+      state.messages.push({ message, status, primaryKey });
     },
-    REMOVEMESSAGEWITHTIMING({ messages }, timestamp) {
-      messages.forEach((item, index) => {
-        if (item.timestamp === timestamp) {
-          messages.splice(index, 1);
-        }
-      });
+    REMOVEMESSAGEWITHTIMING(state, primaryKey) {
+      const index = state.messages.findIndex((item) => item.primaryKey === primaryKey);
+      state.messages.splice(index, 1);
     },
-    REMOVEMESSAGE({ messages }, index) {
-      messages.splice(index, 1);
+    REMOVEMESSAGE(state, index) {
+      state.messages.splice(index, 1);
     },
   },
 };

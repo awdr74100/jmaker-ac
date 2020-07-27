@@ -22,4 +22,15 @@
       background-color: darken($value, 10%);
     }
   }
+  .btn--outline--#{$key} {
+    color: $value;
+    border: 1px solid $value;
+    background-color: #fff;
+
+    &:hover {
+      border: 1px solid lighten($value, 40%);
+      background-color: lighten($value, 40%);
+      color: #fff;
+    }
+  }
 }

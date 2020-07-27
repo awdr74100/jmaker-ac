@@ -10,7 +10,7 @@
       <UserTable :users="sliceAndSortUsers" />
     </div>
     <div class="row no-gutters mt-3 mb-4">
-      <Pagination :count="users.length" @callTogglePage="togglePage" />
+      <Pagination :count="filterUsers.length" @callTogglePage="togglePage" />
     </div>
   </main>
 </template>
@@ -42,11 +42,16 @@ export default {
   },
   computed: {
     ...mapState('users', ['users']),
+    filterUsers() {
+      const vm = this;
+      return vm.users.filter((item) => item.register_at === null);
+    },
     sliceAndSortUsers() {
       const vm = this;
+      const users = JSON.parse(JSON.stringify(vm.users));
       const [sortA, sortB] = vm.sort === 'toLow' ? [1, -1] : [-1, 1];
       const [startIndex, endIndex] = [(vm.page - 1) * 8, vm.page * 8];
-      return vm.users
+      return users
         .sort((a, b) => (a.register_at > b.register_at ? sortA : sortB))
         .filter((item) => item.register_at === null)
         .slice(startIndex, endIndex);

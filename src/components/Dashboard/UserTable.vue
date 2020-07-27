@@ -22,8 +22,12 @@
           <td>unknown</td>
           <td class="text-danger">匿名用戶</td>
           <td class="text-center">
-            <button class="btn btn--primary" @click.prevent="open">註冊</button>
-            <button class="btn btn--danger ml-1" @click="close">刪除</button>
+            <button class="btn btn--primary" @click.prevent="open('register', item._id)">
+              註冊
+            </button>
+            <button class="btn btn--danger ml-1" @click.prevent="open('delete', item._id)">
+              刪除
+            </button>
           </td>
         </tr>
       </tbody>
@@ -37,11 +41,8 @@ export default {
     users: Array,
   },
   methods: {
-    open() {
-      this.$modal.show('example');
-    },
-    close() {
-      this.$modal.hide('example');
+    open(modal, id) {
+      this.$store.dispatch('modal/openModal', { modal, id });
     },
   },
 };

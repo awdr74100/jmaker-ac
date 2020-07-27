@@ -1,3 +1,48 @@
+.vm--modal {
+  border-radius: 5px !important;
+  background: transparent;
+}
+
 .modal {
-  color: red;
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    h5 {
+      font-size: 18px;
+    }
+    i {
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: rgb(212, 212, 212);
+      }
+    }
+  }
+  &__body {
+    width: 100%;
+    background: theme-color('white');
+    color: theme-color('secondary');
+  }
+  &__label {
+    display: block;
+  }
+  &__input {
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    height: 32px;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    border-top: 1px solid #dadada;
+    background: theme-color('white');
+  }
 }

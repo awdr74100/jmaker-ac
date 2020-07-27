@@ -15,7 +15,7 @@
           class="loginForm__input loginForm__input--email"
           id="inputEmail"
           autocomplete="off"
-          v-model="admin.email"
+          v-model="account.email"
           @focus="inputStatus.email = true"
           @blur="changeInputStatus('email')"
         />
@@ -32,7 +32,7 @@
           class="loginForm__input loginForm__input--password"
           id="inputPassword"
           autocomplete="off"
-          v-model="admin.password"
+          v-model="account.password"
           @focus="inputStatus.password = true"
           @blur="changeInputStatus('password')"
         />
@@ -60,7 +60,7 @@ export default {
         email: false,
         password: false,
       },
-      admin: {
+      account: {
         email: '',
         password: '',
       },
@@ -68,11 +68,11 @@ export default {
   },
   methods: {
     changeInputStatus(input) {
-      if (this.admin[input] !== '') return;
+      if (this.account[input] !== '') return;
       this.inputStatus[input] = false;
     },
     login() {
-      this.$store.dispatch('admin/login', this.admin);
+      this.$store.dispatch('admin/login', this.account);
     },
   },
 };
