@@ -7,7 +7,7 @@
       <PanelGroup :users="users" />
     </div>
     <div class="row no-gutters mt-3">
-      <UserTable :users="sliceAndSortUsers" />
+      <UserTable :registerUsers="sliceAndSortUsers" @callToggleSort="toggleSort" />
     </div>
     <div class="row no-gutters mt-3 mb-4">
       <Pagination :count="filterUsers.length" @callTogglePage="togglePage" />
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      sort: 'toLow',
+      sort: 'sortDown',
       page: 1,
     };
   },
@@ -38,6 +38,9 @@ export default {
     ...mapActions('users', ['getUsers']),
     togglePage(index) {
       this.page = index;
+    },
+    toggleSort() {
+      this.sort = this.sort === 'sortUp' ? 'sortDown' : 'sortUp';
     },
   },
   computed: {
@@ -49,11 +52,11 @@ export default {
     sliceAndSortUsers() {
       const vm = this;
       const users = JSON.parse(JSON.stringify(vm.users));
-      const [sortA, sortB] = vm.sort === 'toLow' ? [1, -1] : [-1, 1];
+      const [sortA, sortB] = vm.sort === 'sortUp' ? [1, -1] : [-1, 1];
       const [startIndex, endIndex] = [(vm.page - 1) * 8, vm.page * 8];
       return users
-        .sort((a, b) => (a.register_at > b.register_at ? sortA : sortB))
         .filter((item) => item.register_at === null)
+        .sort((a, b) => (a.created_at > b.created_at ? sortA : sortB))
         .slice(startIndex, endIndex);
     },
   },

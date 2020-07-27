@@ -5,11 +5,11 @@
   align-items: center;
 
   &__menu {
-    padding: 26px 26px 26px 15px;
+    padding: 26px 15px 26px 15px;
     cursor: pointer;
   }
   &__logo {
-    width: 180px;
+    width: 160px;
     height: 48px;
     background-image: url('~@img/logo-name.png');
     background-position: center center;
@@ -47,7 +47,7 @@
   }
   &__btn {
     display: inline-block;
-    padding: 25px 15px 25px 16px;
+    padding: 25px 15px 25px 15px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s;

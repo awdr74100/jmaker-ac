@@ -6,12 +6,12 @@ export default {
   strict: true,
   namespaced: true,
   state: {
-    id: '',
+    user: {},
   },
   actions: {
-    openModal({ commit }, { modal, id }) {
+    openModal({ commit }, { modal, user }) {
       vm.$modal.show(modal);
-      commit('OPENMODAL', id);
+      commit('OPENMODAL', user);
     },
     closeModal({ commit }, modal) {
       vm.$modal.hide(modal);
@@ -19,11 +19,11 @@ export default {
     },
   },
   mutations: {
-    OPENMODAL(state, id) {
-      state.id = id;
+    OPENMODAL(state, user) {
+      state.user = user;
     },
     CLOSEMODAL(state) {
-      state.id = '';
+      state.user = {};
     },
   },
 };

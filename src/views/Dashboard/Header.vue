@@ -1,12 +1,18 @@
 <template>
   <header class="dashboardHeader bg-primary">
-    <div class="dashboardHeader__menu" @click="sidebarToggle">
+    <div class="dashboardHeader__menu mr-2 mr-md-0" @click="sidebarToggle">
       <Hamburger />
     </div>
-    <a href="#" class="dashboardHeader__logo ml-3"></a>
-    <input type="text" class="dashboardHeader__input ml-md-4" placeholder="檢查學號的當前狀態" />
-    <a href="#" class="dashboardHeader__btn ml-auto" @click.prevent="logout"
-      ><span>登出</span><span><i class="fas fa-sign-out-alt ml-2"></i></span
+    <a href="#" class="dashboardHeader__logo mr-2"></a>
+    <input
+      type="text"
+      class="dashboardHeader__input ml-md-5"
+      placeholder="檢查學號的當前狀態"
+      v-model="toUpperCase"
+      @keypress.enter="searchUser('search')"
+    />
+    <a href="#" class="dashboardHeader__btn ml-md-auto ml-2" @click.prevent="logout"
+      ><span class="mr-2">登出</span><i class="fas fa-sign-out-alt"></i
     ></a>
   </header>
 </template>
@@ -19,12 +25,32 @@ export default {
   components: {
     Hamburger,
   },
+  data() {
+    return {
+      userid: '',
+    };
+  },
   methods: {
+    ...mapActions('admin', ['logout']),
     sidebarToggle() {
       const status = this.$store.state.openSidebar;
       this.$store.commit('SIDEBARTOGGLE', !status);
     },
-    ...mapActions('admin', ['logout']),
+    async searchUser(modal) {
+      await this.$store.dispatch('users/getUser', this.userid);
+      const { user } = this.$store.state.users;
+      this.$store.dispatch('modal/openModal', { modal, user });
+    },
+  },
+  computed: {
+    toUpperCase: {
+      get() {
+        return this.userid;
+      },
+      set(val) {
+        this.userid = val.toUpperCase();
+      },
+    },
   },
 };
 </script>
