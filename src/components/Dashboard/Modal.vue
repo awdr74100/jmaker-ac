@@ -26,7 +26,7 @@
               <label for="userName" class="modal__label mb-2">姓名</label>
               <input type="text" id="userName" class="modal__input mb-3" v-model="input.username" />
               <label for="userId" class="modal__label mb-2">學號</label>
-              <input type="text" id="userId" class="modal__input" v-model="toUpperCase" />
+              <input type="text" id="userId" class="modal__input" v-model="useridToUpperCase" />
             </form>
           </div>
         </div>
@@ -177,6 +177,69 @@
         </div>
       </div>
     </modal>
+    <!-- mail -->
+    <modal
+      name="mail"
+      @before-open="beforeOpen"
+      :adaptive="true"
+      :shiftY="0.2"
+      height="auto"
+      :width="500"
+      :max-width="maxWidth"
+      :clickToClose="false"
+      ><div class="container-fluid px-0">
+        <div class="row no-gutters">
+          <div class="modal__header text-white bg-primary p-3">
+            <h5>撰寫收件人資料</h5>
+            <i class="fas fa-times ml-auto" @click.prevent="close('mail')"></i>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="modal__body p-3">
+            <form action="#">
+              <label for="adminName" class="modal__label mb-2">管理員名稱</label>
+              <input
+                type="text"
+                id="adminName"
+                class="modal__input mb-3"
+                v-model="mail.nickname"
+                disabled
+              />
+              <label for="userid" class="modal__label mb-2">信箱</label>
+              <div class="modal__group  mb-3">
+                <input
+                  type="text"
+                  id="userid"
+                  class="modal__input left"
+                  v-model="mailUseridToUpperCase"
+                />
+                <input type="text" class="modal__input right" :value="mail.domain" disabled />
+              </div>
+              <label for="subject" class="modal__label mb-2">標題</label>
+              <input type="text" id="subject" class="modal__input mb-3" v-model="mail.subject" />
+              <label for="content" class="modal__label mb-2">內容</label>
+              <textarea
+                id="content"
+                class="modal__textarea"
+                cols="30"
+                rows="5"
+                v-model="mail.content"
+              ></textarea>
+            </form>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="modal__footer px-3 py-2">
+            <button class="btn btn--gray" @click.prevent="close('mail')">
+              取消
+            </button>
+            <button class="btn btn--primary ml-2" @click.prevent="mailSend('mail')">
+              確認
+            </button>
+          </div>
+        </div>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -190,6 +253,13 @@ export default {
       input: {
         username: '',
         userid: '',
+      },
+      mail: {
+        nickname: JSON.parse(localStorage.getItem('account')).nickname,
+        userid: '',
+        domain: '@stust.edu.tw',
+        subject: '',
+        content: '',
       },
     };
   },
@@ -222,15 +292,43 @@ export default {
       await this.$store.dispatch('users/adjustAuth', { id, auth });
       this.$store.dispatch('modal/closeModal', modal);
     },
+    async mailSend(modal) {
+      await this.$store.dispatch('image/uploadImage', this.file);
+      const payload = {
+        nickname: this.mail.nickname,
+        email: this.mail.userid + this.mail.domain,
+        subject: this.mail.subject,
+        imgUrl: this.imgUrl,
+        content: this.mail.content,
+      };
+      await this.$store.dispatch('mail/mailSend', payload);
+      this.mail = {
+        nickname: JSON.parse(localStorage.getItem('account')).nickname,
+        userid: '',
+        domain: '@stust.edu.tw',
+        subject: '',
+        content: '',
+      };
+      this.$store.dispatch('modal/closeModal', modal);
+    },
   },
   computed: {
     ...mapState('modal', ['user']),
-    toUpperCase: {
+    ...mapState('image', ['file', 'imgUrl']),
+    useridToUpperCase: {
       get() {
         return this.input.userid;
       },
       set(val) {
         this.input.userid = val.toUpperCase();
+      },
+    },
+    mailUseridToUpperCase: {
+      get() {
+        return this.mail.userid;
+      },
+      set(val) {
+        this.mail.userid = val.toUpperCase();
       },
     },
   },

@@ -20,7 +20,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in registerUsers" :key="index">
-          <td>{{ index + 1 }}</td>
+          <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
           <td>{{ item._id }}</td>
           <td>{{ item.created_at | datetime }}</td>
           <td>unknown</td>
@@ -57,7 +57,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in adjustUsers" :key="index">
-          <td>{{ index + 1 }}</td>
+          <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
           <td>{{ item._id }}</td>
           <td>{{ item.register_at | datetime }}</td>
           <td>{{ item.userid }}</td>
@@ -83,6 +83,7 @@ export default {
   props: {
     registerUsers: Array,
     adjustUsers: Array,
+    nowPage: Number,
   },
   data() {
     return {

@@ -8,7 +8,7 @@
       type="text"
       class="dashboardHeader__input ml-md-5"
       placeholder="檢查學號的當前狀態"
-      v-model="toUpperCase"
+      v-model="useridToUpperCase"
       @keypress.enter="searchUser('search')"
     />
     <a href="#" class="dashboardHeader__btn ml-md-auto ml-2" @click.prevent="logout"
@@ -43,7 +43,7 @@ export default {
     },
   },
   computed: {
-    toUpperCase: {
+    useridToUpperCase: {
       get() {
         return this.userid;
       },

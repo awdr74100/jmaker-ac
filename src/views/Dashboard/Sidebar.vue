@@ -25,12 +25,22 @@
           >
         </li>
       </ul>
+      <ul class="dashboardSidebar__list">
+        <li class="dashboardSidebar__item">
+          <router-link
+            to="/admin/mail"
+            class="dashboardSidebar__link"
+            :class="{ 'dashboardSidebar__link--active': visibility === 'MailSend' }"
+            @click.native="sidebarToggle"
+            ><i class="fa fa-tasks mr-3 pl-3 py-3"></i> 違規訊息推播</router-link
+          >
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
 
 <script>
-
 export default {
   methods: {
     sidebarToggle() {

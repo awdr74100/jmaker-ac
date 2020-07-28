@@ -1,5 +1,5 @@
 <template>
-  <main class="container-fluid registerUser">
+  <main class="container-fluid">
     <div class="row">
       <h1 class="registerUser__title">實體用戶註冊</h1>
     </div>
@@ -7,7 +7,7 @@
       <PanelGroup :users="users" />
     </div>
     <div class="row no-gutters mt-3">
-      <UserTable :registerUsers="sliceAndSortUsers" @callToggleSort="toggleSort" />
+      <UserTable :registerUsers="sliceAndSortUsers" :nowPage="page" @callToggleSort="toggleSort" />
     </div>
     <div class="row no-gutters mt-3 mb-4">
       <Pagination :count="filterUsers.length" @callTogglePage="togglePage" />

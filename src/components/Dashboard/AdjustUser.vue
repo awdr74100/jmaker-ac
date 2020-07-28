@@ -1,5 +1,5 @@
 <template>
-  <main class="container-fluid adjustUser">
+  <main class="container-fluid">
     <div class="row">
       <h1 class="adjustUser__title">調整用戶權限</h1>
     </div>
@@ -7,7 +7,7 @@
       <PanelGroup :users="users" />
     </div>
     <div class="row no-gutters mt-3">
-      <UserTable :adjustUsers="sliceAndSortUsers" @callToggleSort="toggleSort" />
+      <UserTable :adjustUsers="sliceAndSortUsers" :nowPage="page" @callToggleSort="toggleSort" />
     </div>
     <div class="row no-gutters mt-3 mb-4">
       <Pagination :count="filterUsers.length" @callTogglePage="togglePage" />

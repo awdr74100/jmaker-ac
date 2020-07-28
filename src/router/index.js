@@ -30,6 +30,12 @@ const routes = [
         meta: { requiresAuth: true },
         component: () => import('@/components/Dashboard/AdjustUser.vue'),
       },
+      {
+        path: 'mail',
+        name: 'MailSend',
+        meta: { requiresAuth: true },
+        component: () => import('@/components/Dashboard/MailSend.vue'),
+      },
     ],
   },
 ];
