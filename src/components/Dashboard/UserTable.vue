@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     open(modal, user) {
-      this.$store.dispatch('modal/openModal', { modal, user });
+      this.$store.commit('modal/OPENMODAL', { modal, user });
     },
     toggleSort() {
       this.sort = this.sort === 'sortDown' ? 'sortUp' : 'sortDown';

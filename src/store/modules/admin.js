@@ -1,5 +1,8 @@
+import Vue from 'vue';
 import axios from 'axios';
 import router from '@/router';
+
+const vm = Vue.prototype;
 
 export default {
   strict: true,
@@ -15,12 +18,15 @@ export default {
         password,
       };
       const options = { root: true };
+      vm.$Progress.start();
       try {
         const res = await axios.post(url, data);
         if (!res.data.success) {
+          vm.$Progress.fail();
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;
         }
+        vm.$Progress.finish();
         localStorage.setItem('account', JSON.stringify(res.data.admin));
         dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, options);
         commit('ISLOGIN', true);
@@ -32,8 +38,10 @@ export default {
     async logout({ dispatch, commit }) {
       const url = `${process.env.VUE_APP_BASE_URL}/admin/logout`;
       const options = { root: true };
+      vm.$Progress.start();
       try {
         const res = await axios.post(url);
+        vm.$Progress.finish();
         localStorage.removeItem('account');
         dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
         commit('ISLOGIN', false);

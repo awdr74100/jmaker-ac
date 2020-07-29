@@ -38,7 +38,7 @@ export default {
       const file = e.target.files[0];
       await this.$store.dispatch('image/dataTransfer', file);
       const modal = 'mail';
-      this.$store.dispatch('modal/openModal', { modal });
+      this.$store.commit('modal/OPENMODAL', { modal });
     },
     dragLeave(e) {
       e.preventDefault();
@@ -57,7 +57,7 @@ export default {
       const file = e.dataTransfer.files[0];
       await this.$store.dispatch('image/dataTransfer', file);
       const modal = 'mail';
-      this.$store.dispatch('modal/openModal', { modal });
+      this.$store.commit('modal/OPENMODAL', { modal });
     },
   },
 };

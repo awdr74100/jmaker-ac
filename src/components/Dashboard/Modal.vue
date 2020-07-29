@@ -155,6 +155,15 @@
                 :value="user.userid"
                 disabled
               />
+              <label for="auth" class="modal__label mb-2">狀態</label>
+              <input
+                type="text"
+                id="auth"
+                class="modal__input mb-3"
+                :class="{ 'text-success': user.auth, 'text-warning': !user.auth }"
+                :value="user.auth === true ? '實體用戶' : '移除權限'"
+                disabled
+              />
               <label for="created_at" class="modal__label mb-2">加入日期</label>
               <input
                 type="text"
@@ -268,29 +277,33 @@ export default {
       this.maxWidth = window.innerWidth - 30;
     },
     close(modal) {
-      this.$store.dispatch('modal/closeModal', modal);
+      this.$store.commit('modal/CLOSEMODAL', modal);
       this.input = { username: '', userid: '' };
+      this.mail = {
+        nickname: JSON.parse(localStorage.getItem('account')).nickname,
+        userid: '',
+        domain: '@stust.edu.tw',
+        subject: '',
+        content: '',
+      };
     },
     async registerUser(modal) {
-      // eslint-disable-next-line dot-notation
-      const id = this.user['_id'];
+      const id = this.user._id;
       const { username, userid } = this.input;
       await this.$store.dispatch('users/registerUser', { id, username, userid });
-      this.$store.dispatch('modal/closeModal', modal);
+      this.$store.commit('modal/CLOSEMODAL', modal);
       this.input = { username: '', userid: '' };
     },
     async deleteUser(modal) {
-      // eslint-disable-next-line dot-notation
-      const id = this.user['_id'];
+      const id = this.user._id;
       await this.$store.dispatch('users/deleteUser', id);
-      this.$store.dispatch('modal/closeModal', modal);
+      this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async adjustUser(modal) {
-      // eslint-disable-next-line dot-notation
-      const id = this.user['_id'];
+      const id = this.user._id;
       const auth = !this.user.auth;
       await this.$store.dispatch('users/adjustAuth', { id, auth });
-      this.$store.dispatch('modal/closeModal', modal);
+      this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async mailSend(modal) {
       await this.$store.dispatch('image/uploadImage', this.file);
@@ -309,7 +322,7 @@ export default {
         subject: '',
         content: '',
       };
-      this.$store.dispatch('modal/closeModal', modal);
+      this.$store.commit('modal/CLOSEMODAL', modal);
     },
   },
   computed: {

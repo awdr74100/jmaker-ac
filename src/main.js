@@ -10,7 +10,7 @@ import store from './store';
 import datetime from './filter/datetime';
 
 const VueProgressOptions = {
-  color: '#47ae74',
+  color: '#bdd0d8',
   thickness: '3px',
 };
 

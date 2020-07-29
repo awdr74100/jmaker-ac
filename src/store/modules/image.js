@@ -1,4 +1,7 @@
+import Vue from 'vue';
 import axios from 'axios';
+
+const vm = Vue.prototype;
 
 export default {
   strict: true,
@@ -25,6 +28,7 @@ export default {
       const formData = new FormData();
       formData.append('image', file);
       const options = { root: true };
+      vm.$Progress.start();
       try {
         const res = await axios.post(url, formData);
         if (!res.data.success) {

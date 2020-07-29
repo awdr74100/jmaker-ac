@@ -39,7 +39,8 @@ export default {
     async searchUser(modal) {
       await this.$store.dispatch('users/getUser', this.userid);
       const { user } = this.$store.state.users;
-      this.$store.dispatch('modal/openModal', { modal, user });
+      this.$store.commit('modal/OPENMODAL', { modal, user });
+      this.userid = '';
     },
   },
   computed: {
