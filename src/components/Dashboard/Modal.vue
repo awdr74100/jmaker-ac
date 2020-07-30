@@ -23,7 +23,7 @@
             <ValidationObserver ref="registerForm">
               <form>
                 <label for="id" class="modal__label mb-2">識別碼</label>
-                <input type="text" id="id" class="modal__input mb-3" :value="user._id" readonly />
+                <input type="text" id="id" class="modal__input mb-3" :value="user._id" disabled />
                 <label for="userName" class="modal__label mb-2">姓名</label>
                 <ValidationProvider tag="div" rules="required" name="userName" v-slot="{ failed }">
                   <input
@@ -214,7 +214,7 @@
       :width="500"
       :max-width="maxWidth"
       :clickToClose="false"
-      ><div class="container-fluid px-0">
+      ><div class="container-fluid px-0 modal">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>撰寫收件人資料</h5>
@@ -223,52 +223,81 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__body p-3">
-            <ValidationObserver ref="mailForm">
-              <form>
-                <label for="adminName" class="modal__label mb-2">管理員名稱</label>
-                <input
-                  type="text"
-                  id="adminName"
-                  class="modal__input mb-3"
-                  v-model="mail.nickname"
-                  readonly
-                />
-                <label for="userid" class="modal__label mb-2">信箱*</label>
-                <ValidationProvider tag="div" rules="required" name="userid" v-slot="{ failed }">
-                  <div class="modal__group  mb-3">
-                    <input
-                      type="text"
-                      id="userid"
-                      class="modal__input left"
-                      :class="{ 'modal__input--error': failed }"
-                      v-model="mailUseridToUpperCase"
-                    />
-                    <input type="text" class="modal__input right" :value="mail.domain" readonly />
-                  </div>
-                </ValidationProvider>
-                <label for="subject" class="modal__label mb-2">標題*</label>
-                <ValidationProvider tag="div" rules="required" name="subject" v-slot="{ failed }">
+            <div class="modal__group mb-3">
+              <button
+                class="btn left"
+                :class="{
+                  'btn--primary': view === 'addressee',
+                  'btn--outline--primary': view === 'preview',
+                }"
+                @click.prevent="view = view === 'addressee' ? 'preview' : 'addressee'"
+              >
+                收件人
+              </button>
+              <button
+                class="btn right"
+                :class="{
+                  'btn--primary': view === 'preview',
+                  'btn--outline--primary': view === 'addressee',
+                }"
+                @click.prevent="view = view === 'addressee' ? 'preview' : 'addressee'"
+              >
+                預覽圖片
+              </button>
+            </div>
+            <template v-if="view === 'addressee'">
+              <ValidationObserver tag="div" ref="mailForm">
+                <form>
+                  <label for="adminName" class="modal__label mb-2">管理員名稱</label>
                   <input
                     type="text"
-                    id="subject"
+                    id="adminName"
                     class="modal__input mb-3"
-                    :class="{ 'modal__input--error': failed }"
-                    v-model="mail.subject"
+                    v-model="mail.nickname"
+                    disabled
                   />
-                </ValidationProvider>
-                <label for="content" class="modal__label mb-2">內容</label>
-                <textarea
-                  id="content"
-                  class="modal__textarea"
-                  cols="30"
-                  rows="5"
-                  v-model="mail.content"
-                ></textarea>
-              </form>
-            </ValidationObserver>
+                  <label for="userid" class="modal__label mb-2">信箱*</label>
+                  <ValidationProvider tag="div" rules="required" name="userid" v-slot="{ failed }">
+                    <div class="modal__group  mb-3">
+                      <input
+                        type="text"
+                        id="userid"
+                        class="modal__input left"
+                        :class="{ 'modal__input--error': failed }"
+                        v-model="mailUseridToUpperCase"
+                      />
+                      <input type="text" class="modal__input right" :value="mail.domain" disabled />
+                    </div>
+                  </ValidationProvider>
+                  <label for="subject" class="modal__label mb-2">標題*</label>
+                  <ValidationProvider tag="div" rules="required" name="subject" v-slot="{ failed }">
+                    <input
+                      type="text"
+                      id="subject"
+                      class="modal__input mb-3"
+                      :class="{ 'modal__input--error': failed }"
+                      v-model="mail.subject"
+                    />
+                  </ValidationProvider>
+                  <label for="content" class="modal__label mb-2">內容</label>
+                  <textarea
+                    id="content"
+                    class="modal__textarea"
+                    cols="30"
+                    rows="4"
+                    v-model="mail.content"
+                  ></textarea>
+                </form>
+              </ValidationObserver>
+            </template>
+            <div
+              class="modal__preview"
+              :style="{ 'background-image': `url('${base64}')` }"
+              v-else
+            ></div>
           </div>
         </div>
-        <div class="row no-gutters">
+        <div class="row no-gutters" v-if="view === 'addressee'">
           <div class="modal__footer px-3 py-2">
             <button class="btn btn--gray" @click.prevent="close('mail')">
               取消
@@ -290,6 +319,7 @@ export default {
   data() {
     return {
       maxWidth: 0,
+      view: 'addressee',
       input: {
         username: '',
         userid: '',
@@ -362,7 +392,7 @@ export default {
   },
   computed: {
     ...mapState('modal', ['user']),
-    ...mapState('image', ['file', 'imgUrl']),
+    ...mapState('image', ['file', 'base64', 'imgUrl']),
     useridToUpperCase: {
       get() {
         return this.input.userid;

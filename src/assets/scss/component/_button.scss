@@ -27,4 +27,14 @@
       cursor: not-allowed;
     }
   }
+  .btn--outline--#{$key} {
+    color: $value;
+    background-color: transparent;
+    border: 1px solid $value;
+
+    &:hover {
+      color: #fff;
+      background-color: $value;
+    }
+  }
 }

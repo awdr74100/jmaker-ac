@@ -3,7 +3,7 @@
     <div class="dashboardHeader__menu mr-2 mr-md-0" @click="sidebarToggle">
       <Hamburger />
     </div>
-    <a href="#" class="dashboardHeader__logo mr-2"></a>
+    <div href="#" class="dashboardHeader__logo mr-2"></div>
     <input
       type="text"
       class="dashboardHeader__input ml-md-5"

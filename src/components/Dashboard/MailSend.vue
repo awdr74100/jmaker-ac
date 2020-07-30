@@ -10,13 +10,13 @@
         @click="inputClick"
         @dragleave="dragLeave"
         @dragover="dragOver"
-        @drop="drop"
+        @drop="drop('mail', $event)"
       >
         <div class="mailSend__inner">
           <input type="file" class="file" @change="inputChnage" />
           <span><i class="far fa-image fa-5x"></i></span>
           <span class="mt-2">Drop image here</span>
-          <small class="mt-4 mx-3">Accepted file types: jpeg, png, gif. Up to 1MB </small>
+          <small class="mt-4 mx-3">Accepted file types: JPG, PNG, GIF. Up to 1MB </small>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
       e.stopPropagation();
       this.uploadActive = true;
     },
-    async drop(e) {
+    async drop(modal, e) {
       e.preventDefault();
       e.stopPropagation();
       this.uploadActive = false;
@@ -86,7 +86,6 @@ export default {
         return;
       }
       await this.$store.dispatch('image/dataTransfer', file);
-      const modal = 'mail';
       this.$store.commit('modal/OPENMODAL', { modal });
     },
   },

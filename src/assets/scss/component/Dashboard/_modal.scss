@@ -46,7 +46,7 @@
     &:focus {
       border-color: theme-color('primary');
     }
-    &:read-only {
+    &:disabled {
       background-color: rgb(241, 241, 241);
     }
     &--error {
@@ -91,5 +91,11 @@
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
+  }
+  &__preview {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 334 + 50px;
   }
 }
