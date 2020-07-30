@@ -59,8 +59,11 @@
     padding: 0.375rem 0.75rem;
     border: 1px solid #dadada;
     border-radius: 5px;
+    transition: all 0.3s;
+
     &:focus {
       outline: none;
+      border-color: theme-color('primary');
     }
   }
   &__footer {

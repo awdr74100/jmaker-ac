@@ -38,7 +38,7 @@ export default {
     },
     async searchUser(modal) {
       if (!this.userid) {
-        this.$store.dispatch('alert/updateMessage', { message: '禁止輸入為空', status: 'warning' });
+        this.$store.dispatch('alert/updateMessage', { message: '禁止輸入為空', status: 'danger' });
         return;
       }
       await this.$store.dispatch('users/getUser', this.userid);

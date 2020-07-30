@@ -36,6 +36,21 @@ export default {
     },
     async inputChnage(e) {
       const file = e.target.files[0];
+      const regex = /\.(gif|jpg?g|png)$/i;
+      if (!regex.test(file.name)) {
+        this.$store.dispatch('alert/updateMessage', {
+          message: '不支援的檔案格式',
+          status: 'danger',
+        });
+        return;
+      }
+      if (file.size > 1024 * 1024) {
+        this.$store.dispatch('alert/updateMessage', {
+          message: '超過圖片限制大小',
+          status: 'danger',
+        });
+        return;
+      }
       await this.$store.dispatch('image/dataTransfer', file);
       const modal = 'mail';
       this.$store.commit('modal/OPENMODAL', { modal });
@@ -55,6 +70,21 @@ export default {
       e.stopPropagation();
       this.uploadActive = false;
       const file = e.dataTransfer.files[0];
+      const regex = /\.(gif|jpg?g|png)$/i;
+      if (!regex.test(file.name)) {
+        this.$store.dispatch('alert/updateMessage', {
+          message: '不支援的檔案格式',
+          status: 'danger',
+        });
+        return;
+      }
+      if (file.size > 1024 * 1024) {
+        this.$store.dispatch('alert/updateMessage', {
+          message: '超過圖片限制大小',
+          status: 'danger',
+        });
+        return;
+      }
       await this.$store.dispatch('image/dataTransfer', file);
       const modal = 'mail';
       this.$store.commit('modal/OPENMODAL', { modal });
