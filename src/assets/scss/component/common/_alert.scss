@@ -24,13 +24,12 @@
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
       background-color: #fff;
 
+      p {
+        white-space: nowrap;
+      }
       &--danger {
         color: theme-color('danger');
         border: 1px solid lighten(theme-color('danger'), 20%);
-
-        p {
-          white-space: nowrap;
-        }
 
         .icon {
           background-color: theme-color('danger');
@@ -60,6 +59,24 @@
 
           &:hover {
             color: darken(theme-color('success'), 20%);
+          }
+        }
+      }
+      &--warning {
+        color: theme-color('warning');
+        border: 1px solid lighten(theme-color('warning'), 20%);
+
+        .icon {
+          background-color: theme-color('warning');
+          padding: 18px 19px;
+        }
+
+        .close {
+          color: theme-color('warning');
+          transition: all 0.3s;
+
+          &:hover {
+            color: darken(theme-color('warning'), 20%);
           }
         }
       }

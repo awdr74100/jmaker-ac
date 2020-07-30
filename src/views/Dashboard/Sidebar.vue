@@ -32,7 +32,7 @@
             class="dashboardSidebar__link"
             :class="{ 'dashboardSidebar__link--active': visibility === 'MailSend' }"
             @click.native="sidebarToggle"
-            ><i class="fa fa-tasks mr-3 pl-3 py-3"></i> 違規訊息推播</router-link
+            ><i class="fas fa-envelope-open-text mr-3 pl-3 py-3"></i> 違規訊息推播</router-link
           >
         </li>
       </ul>

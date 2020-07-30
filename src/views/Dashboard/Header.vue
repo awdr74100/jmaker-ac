@@ -37,6 +37,10 @@ export default {
       this.$store.commit('SIDEBARTOGGLE', !status);
     },
     async searchUser(modal) {
+      if (!this.userid) {
+        this.$store.dispatch('alert/updateMessage', { message: '禁止輸入為空', status: 'warning' });
+        return;
+      }
       await this.$store.dispatch('users/getUser', this.userid);
       const { user } = this.$store.state.users;
       this.$store.commit('modal/OPENMODAL', { modal, user });

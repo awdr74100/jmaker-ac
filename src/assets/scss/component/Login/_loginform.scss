@@ -27,7 +27,7 @@
     transition: all 0.3s;
 
     &--active {
-      top: -16px;
+      top: -12px;
       left: 0px;
       color: lighten(theme-color('secondary'), 50%);
       font-size: 14px;
@@ -51,6 +51,9 @@
     &--password {
       background-image: url('~@img/password.svg');
     }
+    &--error {
+      border-color: theme-color('danger');
+    }
   }
   &__btn {
     font-size: 16px;
@@ -66,5 +69,14 @@
     cursor: pointer;
     font-size: 15px;
     color: theme-color('secondary');
+  }
+  .error-message {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    display: inline-block;
+    color: theme-color('danger');
+    font-size: 14px;
   }
 }

@@ -20,14 +20,32 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__body p-3">
-            <form action="#">
-              <label for="id" class="modal__label mb-2">識別碼</label>
-              <input type="text" id="id" class="modal__input mb-3" :value="user._id" disabled />
-              <label for="userName" class="modal__label mb-2">姓名</label>
-              <input type="text" id="userName" class="modal__input mb-3" v-model="input.username" />
-              <label for="userId" class="modal__label mb-2">學號</label>
-              <input type="text" id="userId" class="modal__input" v-model="useridToUpperCase" />
-            </form>
+            <ValidationObserver ref="registerForm">
+              <form>
+                <label for="id" class="modal__label mb-2">識別碼</label>
+                <input type="text" id="id" class="modal__input mb-3" :value="user._id" readonly />
+                <label for="userName" class="modal__label mb-2">姓名</label>
+                <ValidationProvider tag="div" rules="required" name="userName" v-slot="{ failed }">
+                  <input
+                    type="text"
+                    id="userName"
+                    class="modal__input mb-3"
+                    :class="{ 'modal__input--error': failed }"
+                    v-model="input.username"
+                  />
+                </ValidationProvider>
+                <label for="userId" class="modal__label mb-2">學號</label>
+                <ValidationProvider tag="div" rules="required" name="userId" v-slot="{ failed }">
+                  <input
+                    type="text"
+                    id="userId"
+                    class="modal__input"
+                    :class="{ 'modal__input--error': failed }"
+                    v-model="useridToUpperCase"
+                  />
+                </ValidationProvider>
+              </form>
+            </ValidationObserver>
           </div>
         </div>
         <div class="row no-gutters">
@@ -205,36 +223,49 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__body p-3">
-            <form action="#">
-              <label for="adminName" class="modal__label mb-2">管理員名稱</label>
-              <input
-                type="text"
-                id="adminName"
-                class="modal__input mb-3"
-                v-model="mail.nickname"
-                disabled
-              />
-              <label for="userid" class="modal__label mb-2">信箱</label>
-              <div class="modal__group  mb-3">
+            <ValidationObserver ref="mailForm">
+              <form>
+                <label for="adminName" class="modal__label mb-2">管理員名稱</label>
                 <input
                   type="text"
-                  id="userid"
-                  class="modal__input left"
-                  v-model="mailUseridToUpperCase"
+                  id="adminName"
+                  class="modal__input mb-3"
+                  v-model="mail.nickname"
+                  readonly
                 />
-                <input type="text" class="modal__input right" :value="mail.domain" disabled />
-              </div>
-              <label for="subject" class="modal__label mb-2">標題</label>
-              <input type="text" id="subject" class="modal__input mb-3" v-model="mail.subject" />
-              <label for="content" class="modal__label mb-2">內容</label>
-              <textarea
-                id="content"
-                class="modal__textarea"
-                cols="30"
-                rows="5"
-                v-model="mail.content"
-              ></textarea>
-            </form>
+                <label for="userid" class="modal__label mb-2">信箱*</label>
+                <ValidationProvider tag="div" rules="required" name="userid" v-slot="{ failed }">
+                  <div class="modal__group  mb-3">
+                    <input
+                      type="text"
+                      id="userid"
+                      class="modal__input left"
+                      :class="{ 'modal__input--error': failed }"
+                      v-model="mailUseridToUpperCase"
+                    />
+                    <input type="text" class="modal__input right" :value="mail.domain" readonly />
+                  </div>
+                </ValidationProvider>
+                <label for="subject" class="modal__label mb-2">標題*</label>
+                <ValidationProvider tag="div" rules="required" name="subject" v-slot="{ failed }">
+                  <input
+                    type="text"
+                    id="subject"
+                    class="modal__input mb-3"
+                    :class="{ 'modal__input--error': failed }"
+                    v-model="mail.subject"
+                  />
+                </ValidationProvider>
+                <label for="content" class="modal__label mb-2">內容</label>
+                <textarea
+                  id="content"
+                  class="modal__textarea"
+                  cols="30"
+                  rows="5"
+                  v-model="mail.content"
+                ></textarea>
+              </form>
+            </ValidationObserver>
           </div>
         </div>
         <div class="row no-gutters">
@@ -288,6 +319,8 @@ export default {
       };
     },
     async registerUser(modal) {
+      const valid = await this.$refs.registerForm.validate();
+      if (!valid) return;
       const id = this.user._id;
       const { username, userid } = this.input;
       await this.$store.dispatch('users/registerUser', { id, username, userid });
@@ -306,6 +339,8 @@ export default {
       this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async mailSend(modal) {
+      const valid = await this.$refs.mailForm.validate();
+      if (!valid) return;
       await this.$store.dispatch('image/uploadImage', this.file);
       const payload = {
         nickname: this.mail.nickname,

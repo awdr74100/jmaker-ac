@@ -16,7 +16,7 @@
           <input type="file" class="file" @change="inputChnage" />
           <span><i class="far fa-image fa-5x"></i></span>
           <span class="mt-2">Drop image here</span>
-          <small class="mt-4 mx-3">Accepted file types: jpeg, png, gif. Up to 5MB </small>
+          <small class="mt-4 mx-3">Accepted file types: jpeg, png, gif. Up to 1MB </small>
         </div>
       </div>
     </div>
