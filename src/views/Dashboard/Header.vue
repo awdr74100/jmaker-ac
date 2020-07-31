@@ -41,7 +41,8 @@ export default {
         this.$store.dispatch('alert/updateMessage', { message: '禁止輸入為空', status: 'danger' });
         return;
       }
-      await this.$store.dispatch('users/getUser', this.userid);
+      const { userid } = this;
+      await this.$store.dispatch('users/getUser', { userid });
       const { user } = this.$store.state.users;
       this.$store.commit('modal/OPENMODAL', { modal, user });
       this.userid = '';

@@ -9,7 +9,7 @@ export default {
     imgUrl: '',
   },
   actions: {
-    async dataTransfer({ commit }, file) {
+    async dataTransfer({ commit }, { file }) {
       const render = new FileReader();
       return new Promise((resolve) => {
         render.addEventListener('load', (e) => {
@@ -20,19 +20,22 @@ export default {
         render.readAsDataURL(file);
       });
     },
-    async uploadImage({ dispatch, commit }, file) {
+    async uploadImage({ commit, dispatch }, { file }) {
       const url = `${process.env.VUE_APP_BASE_URL}/upload`;
       const formData = new FormData();
       formData.append('image', file);
       const options = { root: true };
+      commit('LOADING', true, options);
       try {
         const res = await axios.post(url, formData);
         if (!res.data.success) {
+          commit('LOADING', false, options);
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;
         }
         commit('UPLOADIMAGE', res.data.imgUrl);
       } catch (error) {
+        commit('LOADING', false, options);
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },

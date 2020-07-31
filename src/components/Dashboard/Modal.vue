@@ -359,7 +359,7 @@ export default {
     },
     async deleteUser(modal) {
       const id = this.user._id;
-      await this.$store.dispatch('users/deleteUser', id);
+      await this.$store.dispatch('users/deleteUser', { id });
       this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async adjustUser(modal) {
@@ -371,7 +371,8 @@ export default {
     async mailSend(modal) {
       const valid = await this.$refs.mailForm.validate();
       if (!valid) return;
-      await this.$store.dispatch('image/uploadImage', this.file);
+      const { file } = this;
+      await this.$store.dispatch('image/uploadImage', { file });
       const payload = {
         nickname: this.mail.nickname,
         email: this.mail.userid + this.mail.domain,
@@ -379,7 +380,7 @@ export default {
         imgUrl: this.imgUrl,
         content: this.mail.content,
       };
-      await this.$store.dispatch('mail/mailSend', payload);
+      await this.$store.dispatch('mail/mailSend', { payload });
       this.mail = {
         nickname: JSON.parse(localStorage.getItem('account')).nickname,
         userid: '',

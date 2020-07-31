@@ -4,7 +4,7 @@ export default {
   strict: true,
   namespaced: true,
   actions: {
-    async mailSend({ dispatch }, payload) {
+    async mailSend({ commit, dispatch }, { payload }) {
       const url = `${process.env.VUE_APP_BASE_URL}/mail`;
       const data = {
         nickname: payload.nickname,
@@ -18,10 +18,13 @@ export default {
         const res = await axios.post(url, data);
         if (!res.data.success) {
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+          commit('LOADING', false, options);
           return;
         }
+        commit('LOADING', false, options);
         dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
       } catch (error) {
+        commit('LOADING', false, options);
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },

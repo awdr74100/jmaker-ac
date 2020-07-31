@@ -51,7 +51,7 @@ export default {
         });
         return;
       }
-      await this.$store.dispatch('image/dataTransfer', file);
+      await this.$store.dispatch('image/dataTransfer', { file });
       const modal = 'mail';
       this.$store.commit('modal/OPENMODAL', { modal });
     },
@@ -85,7 +85,7 @@ export default {
         });
         return;
       }
-      await this.$store.dispatch('image/dataTransfer', file);
+      await this.$store.dispatch('image/dataTransfer', { file });
       this.$store.commit('modal/OPENMODAL', { modal });
     },
   },

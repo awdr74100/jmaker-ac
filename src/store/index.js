@@ -14,6 +14,7 @@ export default new Vuex.Store({
     openSidebar: !(window.innerWidth < 768),
     skeletonActive: false,
     isLoading: false,
+    refresh: true,
   },
   mutations: {
     SIDEBARTOGGLE(state, status) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     LOADING(state, status) {
       state.isLoading = status;
+    },
+    REFRESH(state, status) {
+      state.refresh = status;
     },
   },
   modules: {

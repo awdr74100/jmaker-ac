@@ -22,9 +22,9 @@ export default {
           return;
         }
         localStorage.setItem('account', JSON.stringify(res.data.admin));
-        dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, options);
         commit('ISLOGIN', true);
         router.push({ path: '/admin' });
+        dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, options);
       } catch (error) {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
@@ -35,9 +35,9 @@ export default {
       try {
         const res = await axios.post(url);
         localStorage.removeItem('account');
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
         commit('ISLOGIN', false);
         router.push({ path: '/' });
+        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
       } catch (error) {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
@@ -49,8 +49,8 @@ export default {
         const res = await axios.post(url);
         if (!res.data.success) {
           localStorage.removeItem('account');
-          dispatch('alert/updateMessage', { message: '請重新登入', status: 'danger' }, options);
           commit('ISLOGIN', false);
+          dispatch('alert/updateMessage', { message: '請重新登入', status: 'danger' }, options);
           return;
         }
         commit('ISLOGIN', true);
