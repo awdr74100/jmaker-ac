@@ -66,7 +66,6 @@
         <button class="btn btn--block btn--secondary loginForm__btn mt-4" @click.prevent="login">
           登入
         </button>
-        <button type="reset" style="display:none"></button>
       </form>
     </ValidationObserver>
   </div>

@@ -12,13 +12,20 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     openSidebar: !(window.innerWidth < 768),
+    skeletonActive: false,
+    isLoading: false,
   },
   mutations: {
     SIDEBARTOGGLE(state, status) {
       state.openSidebar = status;
     },
+    SKELETONACTIVE(state, status) {
+      state.skeletonActive = status;
+    },
+    LOADING(state, status) {
+      state.isLoading = status;
+    },
   },
-  actions: {},
   modules: {
     admin,
     alert,

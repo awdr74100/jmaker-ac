@@ -1,7 +1,4 @@
-import Vue from 'vue';
 import axios from 'axios';
-
-const vm = Vue.prototype;
 
 export default {
   strict: true,
@@ -14,16 +11,17 @@ export default {
     async getUsers({ commit, dispatch }) {
       const url = `${process.env.VUE_APP_BASE_URL}/users`;
       const options = { root: true };
-      vm.$Progress.start();
+      commit('SKELETONACTIVE', true, options);
       try {
         const res = await axios.get(url);
         if (!res.data.success) {
-          vm.$Progress.fail();
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;
         }
-        vm.$Progress.finish();
-        commit('GETUSERS', res.data.users);
+        setTimeout(() => {
+          commit('GETUSERS', res.data.users);
+          commit('SKELETONACTIVE', false, options);
+        }, 500);
       } catch (error) {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
@@ -31,31 +29,13 @@ export default {
     async getUser({ commit, dispatch }, userid) {
       const url = `${process.env.VUE_APP_BASE_URL}/users/${userid}`;
       const options = { root: true };
-      vm.$Progress.start();
       try {
         const res = await axios.get(url);
         if (!res.data.success) {
-          vm.$Progress.finish();
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;
         }
-        vm.$Progress.finish();
         commit('GETUSER', res.data.user);
-      } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
-      }
-    },
-    async deleteUser({ dispatch }, id) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users/${id}`;
-      const options = { root: true };
-      try {
-        const res = await axios.delete(url);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
-          return;
-        }
-        dispatch('getUsers');
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
       } catch (error) {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
@@ -69,6 +49,21 @@ export default {
       const options = { root: true };
       try {
         const res = await axios.patch(url, data);
+        if (!res.data.success) {
+          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+          return;
+        }
+        dispatch('getUsers');
+        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
+      } catch (error) {
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+      }
+    },
+    async deleteUser({ dispatch }, id) {
+      const url = `${process.env.VUE_APP_BASE_URL}/users/${id}`;
+      const options = { root: true };
+      try {
+        const res = await axios.delete(url);
         if (!res.data.success) {
           dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;

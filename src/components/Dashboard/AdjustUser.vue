@@ -7,7 +7,12 @@
       <PanelGroup :users="users" />
     </div>
     <div class="row no-gutters mt-3">
-      <UserTable :adjustUsers="sliceAndSortUsers" :nowPage="page" @callToggleSort="toggleSort" />
+      <UserTable
+        :adjustUsers="sliceAndSortUsers"
+        :nowPage="page"
+        :skeleton="skeletonActive"
+        @callToggleSort="toggleSort"
+      />
     </div>
     <div class="row no-gutters mt-3 mb-4">
       <Pagination :count="filterUsers.length" @callTogglePage="togglePage" />
@@ -45,6 +50,7 @@ export default {
   },
   computed: {
     ...mapState('users', ['users']),
+    ...mapState(['skeletonActive']),
     filterUsers() {
       const vm = this;
       return vm.users.filter((item) => item.register_at !== null);

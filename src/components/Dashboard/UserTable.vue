@@ -6,7 +6,7 @@
         <tr>
           <th width="60">No</th>
           <th width="160">識別碼</th>
-          <th width="200" class="d-flex align-items-center">
+          <th width="200">
             加入時間<span @click="toggleSort"
               ><i class="fas fa-arrow-down ml-2" v-if="sort === 'sortDown'"></i
               ><i class="fas fa-arrow-up ml-2" v-else></i
@@ -19,22 +19,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in registerUsers" :key="index">
-          <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
-          <td>{{ item._id }}</td>
-          <td>{{ item.created_at | datetime }}</td>
-          <td>unknown</td>
-          <td>unknown</td>
-          <td class="text-danger">匿名用戶</td>
-          <td class="text-center">
-            <button class="btn btn--primary" @click.prevent="open('register', item)">
-              註冊
-            </button>
-            <button class="btn btn--danger ml-1" @click.prevent="open('delete', item)">
-              刪除
-            </button>
-          </td>
-        </tr>
+        <template v-if="skeleton">
+          <tr style="height:52px" v-for="index in 8" :key="index">
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr v-for="(item, index) in registerUsers" :key="index">
+            <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
+            <td>{{ item._id }}</td>
+            <td>{{ item.created_at | datetime }}</td>
+            <td>unknown</td>
+            <td>unknown</td>
+            <td class="text-danger">匿名用戶</td>
+            <td class="text-center">
+              <button class="btn btn--primary" @click.prevent="open('register', item)">
+                註冊
+              </button>
+              <button class="btn btn--danger ml-1" @click.prevent="open('delete', item)">
+                刪除
+              </button>
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
     <!-- adjust -->
@@ -43,7 +56,7 @@
         <tr>
           <th width="60">No</th>
           <th width="160">識別碼</th>
-          <th width="200" class="d-flex align-items-center">
+          <th width="200">
             註冊時間<span @click="toggleSort"
               ><i class="fas fa-arrow-down ml-2" v-if="sort === 'sortDown'"></i
               ><i class="fas fa-arrow-up ml-2" v-else></i
@@ -56,23 +69,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in adjustUsers" :key="index">
-          <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
-          <td>{{ item._id }}</td>
-          <td>{{ item.register_at | datetime }}</td>
-          <td>{{ item.userid }}</td>
-          <td>{{ item.username }}</td>
-          <td class="text-success" v-if="item.auth">實體用戶</td>
-          <td class="text-warning" v-else>移除權限</td>
-          <td class="text-center">
-            <button class="btn btn--primary" @click.prevent="open('adjust', item)">
-              調整
-            </button>
-            <button class="btn btn--danger ml-1" @click.prevent="open('delete', item)">
-              刪除
-            </button>
-          </td>
-        </tr>
+        <template v-if="skeleton">
+          <tr style="height:52px" v-for="index in 8" :key="index">
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+            <td><Skeleton /></td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr v-for="(item, index) in adjustUsers" :key="index">
+            <td>{{ (nowPage - 1) * 8 + (index + 1) }}</td>
+            <td>{{ item._id }}</td>
+            <td>{{ item.register_at | datetime }}</td>
+            <td>{{ item.userid }}</td>
+            <td>{{ item.username }}</td>
+            <td class="text-success" v-if="item.auth">實體用戶</td>
+            <td class="text-warning" v-else>移除權限</td>
+            <td class="text-center">
+              <button class="btn btn--primary" @click.prevent="open('adjust', item)">
+                調整
+              </button>
+              <button class="btn btn--danger ml-1" @click.prevent="open('delete', item)">
+                刪除
+              </button>
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
   </div>
@@ -84,6 +110,7 @@ export default {
     registerUsers: Array,
     adjustUsers: Array,
     nowPage: Number,
+    skeleton: Boolean,
   },
   data() {
     return {
