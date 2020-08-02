@@ -6,6 +6,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import { Skeleton } from 'vue-loading-skeleton';
+import VueProgressBar from 'vue-progressbar';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -15,6 +16,10 @@ import './validation';
 
 Vue.use(VueAxios, axios);
 Vue.use(VModal);
+Vue.use(VueProgressBar, {
+  color: '#fff',
+  thickness: '3px',
+});
 
 Vue.filter('datetime', datetime);
 
@@ -25,15 +30,6 @@ Vue.component('Skeleton', Skeleton);
 
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
-
-router.beforeEach(async (to, form, next) => {
-  if (to.meta.requiresAuth) {
-    await store.dispatch('admin/check');
-    if (!store.state.admin.isLogin) return next('/');
-    next();
-  }
-  return next();
-});
 
 new Vue({
   router,

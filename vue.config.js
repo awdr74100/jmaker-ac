@@ -22,5 +22,8 @@ module.exports = {
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black-translucent',
+    workboxOptions: {
+      exclude: [/\.map$/, /_redirects/],
+    },
   },
 };

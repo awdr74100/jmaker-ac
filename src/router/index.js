@@ -46,4 +46,14 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    await router.app.$options.store.dispatch('admin/check');
+    if (router.app.$options.store.state.admin.isLogin) next();
+    else next('/');
+  } else {
+    next();
+  }
+});
+
 export default router;
