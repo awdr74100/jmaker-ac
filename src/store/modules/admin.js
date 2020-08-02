@@ -49,7 +49,7 @@ export default {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },
-    async check({ dispatch, commit }) {
+    async check({ dispatch, commit }, { from }) {
       const url = `${process.env.VUE_APP_BASE_URL}/admin/check`;
       const options = { root: true };
       vm.$Progress.start();
@@ -58,7 +58,11 @@ export default {
         if (!res.data.success) {
           localStorage.removeItem('account');
           commit('ISLOGIN', false);
-          dispatch('alert/updateMessage', { message: '請重新登入', status: 'danger' }, options);
+          if (from.path === '/') {
+            dispatch('alert/updateMessage', { message: '請先登入', status: 'danger' }, options);
+          } else {
+            dispatch('alert/updateMessage', { message: '請重新登入', status: 'danger' }, options);
+          }
           return;
         }
         vm.$Progress.finish();

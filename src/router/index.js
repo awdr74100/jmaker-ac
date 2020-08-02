@@ -48,7 +48,7 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
-    await router.app.$options.store.dispatch('admin/check');
+    await router.app.$options.store.dispatch('admin/check', { from });
     if (router.app.$options.store.state.admin.isLogin) next();
     else next('/');
   } else {
