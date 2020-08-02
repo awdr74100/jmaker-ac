@@ -17,23 +17,23 @@ export default {
         email,
         password,
       };
-      const root = { root: true };
-      commit('LOADING', true, root);
+      const options = { root: true };
+      commit('LOADING', true, options);
       try {
         const res = await axios.post(url, data);
         if (!res.data.success) {
-          commit('LOADING', false, root);
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, root);
+          commit('LOADING', false, options);
+          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
           return;
         }
         localStorage.setItem('account', JSON.stringify(res.data.admin));
-        commit('LOADING', false, root);
+        commit('LOADING', false, options);
         commit('ISLOGIN', true);
         router.push({ path: '/admin' });
-        dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, root);
+        dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, options);
       } catch (error) {
-        commit('LOADING', false, root);
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
+        commit('LOADING', false, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },
     async logout({ dispatch, commit }) {

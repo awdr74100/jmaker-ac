@@ -42,6 +42,7 @@
                     class="modal__input"
                     :class="{ 'modal__input--error': failed }"
                     v-model="useridToUpperCase"
+                    @keypress.enter="registerUser('register')"
                   />
                 </ValidationProvider>
               </form>
@@ -54,6 +55,7 @@
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="registerUser('register')">
+              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
               確認
             </button>
           </div>
@@ -91,7 +93,10 @@
             <button class="btn btn--gray" @click.prevent="close('delete')">
               取消
             </button>
-            <button class="btn btn--danger ml-2" @click.prevent="deleteUser('delete')">確認</button>
+            <button class="btn btn--danger ml-2" @click.prevent="deleteUser('delete')">
+              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
+              確認
+            </button>
           </div>
         </div>
       </div>
@@ -129,6 +134,7 @@
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="adjustUser('adjust')">
+              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
               確認
             </button>
           </div>
@@ -318,6 +324,7 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
+      loading: false,
       maxWidth: 0,
       view: 'addressee',
       input: {
@@ -353,19 +360,25 @@ export default {
       if (!valid) return;
       const id = this.user._id;
       const { username, userid } = this.input;
+      this.loading = true;
       await this.$store.dispatch('users/registerUser', { id, username, userid });
+      this.loading = false;
       this.$store.commit('modal/CLOSEMODAL', modal);
       this.input = { username: '', userid: '' };
     },
     async deleteUser(modal) {
       const id = this.user._id;
+      this.loading = true;
       await this.$store.dispatch('users/deleteUser', { id });
+      this.loading = false;
       this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async adjustUser(modal) {
       const id = this.user._id;
       const auth = !this.user.auth;
+      this.loading = true;
       await this.$store.dispatch('users/adjustAuth', { id, auth });
+      this.loading = false;
       this.$store.commit('modal/CLOSEMODAL', modal);
     },
     async mailSend(modal) {

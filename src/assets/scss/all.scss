@@ -11,6 +11,7 @@
 @import './helpers/colors';
 @import './helpers/flex';
 @import './helpers/text';
+@import './helpers/display';
 
 // layout
 @import './layout/grid';
@@ -24,6 +25,7 @@
 @import './component/common/hamburger';
 @import './component/common/pagination';
 @import './component/common/loading';
+@import './component/common/loadingSpinner';
 @import './component/Login/loginForm';
 @import './component/Dashboard/registerUser';
 @import './component/Dashboard/adjustUser';
