@@ -7,14 +7,20 @@
         v-for="(item, index) in messages"
         :key="index"
       >
-        <div class="icon">
-          <i class="fas fa-check text-white" v-if="item.status === 'success'"></i>
-          <i class="fas fa-times text-white" v-if="item.status === 'danger'"></i>
-          <i class="fas fa-exclamation text-white" v-if="item.status === 'warning'"></i>
+        <div class="icon text-white">
+          <span>
+            <font-awesome-icon :icon="['fas', 'check']" v-if="item.status === 'success'" />
+          </span>
+          <span>
+            <font-awesome-icon :icon="['fas', 'times']" v-if="item.status === 'danger'" />
+          </span>
+          <span>
+            <font-awesome-icon :icon="['fas', 'exclamation']" v-if="item.status === 'warning'" />
+          </span>
         </div>
         <p class="mx-3">{{ item.message }}</p>
         <button class="close mr-3" @click.prevent="removeMessage(index)">
-          <i class="fas fa-times"></i>
+          <font-awesome-icon :icon="['fas', 'times']" />
         </button>
       </li>
     </ul>

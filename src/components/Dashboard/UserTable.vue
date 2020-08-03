@@ -7,10 +7,10 @@
           <th width="60">No</th>
           <th width="160">識別碼</th>
           <th width="200">
-            加入時間<span @click="toggleSort"
-              ><i class="fas fa-arrow-down ml-2" v-if="sort === 'sortDown'"></i
-              ><i class="fas fa-arrow-up ml-2" v-else></i
-            ></span>
+            加入時間<span class="pl-2" @click="toggleSort">
+              <font-awesome-icon :icon="['fas', 'arrow-down']" v-if="sort === 'sortDown'" />
+              <font-awesome-icon :icon="['fas', 'arrow-up']" v-else />
+            </span>
           </th>
           <th width="140">學號</th>
           <th width="100">姓名</th>
@@ -57,10 +57,10 @@
           <th width="60">No</th>
           <th width="160">識別碼</th>
           <th width="200">
-            註冊時間<span @click="toggleSort"
-              ><i class="fas fa-arrow-down ml-2" v-if="sort === 'sortDown'"></i
-              ><i class="fas fa-arrow-up ml-2" v-else></i
-            ></span>
+            註冊時間<span class="pl-2" @click="toggleSort">
+              <font-awesome-icon :icon="['fas', 'arrow-down']" v-if="sort === 'sortDown'" />
+              <font-awesome-icon :icon="['fas', 'arrow-up']" v-else />
+            </span>
           </th>
           <th width="140">學號</th>
           <th width="100">姓名</th>

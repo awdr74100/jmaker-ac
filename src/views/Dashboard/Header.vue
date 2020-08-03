@@ -4,16 +4,19 @@
       <Hamburger />
     </div>
     <div href="#" class="dashboardHeader__logo mr-2"></div>
-    <input
-      type="text"
-      class="dashboardHeader__input ml-md-5"
-      placeholder="檢查學號的當前狀態"
-      v-model="useridToUpperCase"
-      @keypress.enter="searchUser('search')"
-    />
-    <a href="#" class="dashboardHeader__btn ml-md-auto ml-2" @click.prevent="logout"
-      ><span class="mr-2">登出</span><i class="fas fa-sign-out-alt"></i
-    ></a>
+    <div class="dashboardHeader__input ml-md-5">
+      <input
+        type="text"
+        placeholder="檢查學號的當前狀態"
+        v-model="useridToUpperCase"
+        @keypress.enter="searchUser('search')"
+      />
+      <span><font-awesome-icon :icon="['fas', 'search']"/></span>
+    </div>
+    <a href="#" class="dashboardHeader__btn ml-md-auto ml-2" @click.prevent="logout">
+      <span class="mr-2">登出</span>
+      <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+    </a>
   </header>
 </template>
 

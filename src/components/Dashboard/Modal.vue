@@ -15,7 +15,9 @@
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>實體用戶註冊</h5>
-            <i class="fas fa-times ml-auto" @click.prevent="close('register')"></i>
+            <span class="ml-auto">
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('register')" />
+            </span>
           </div>
         </div>
         <div class="row no-gutters">
@@ -55,8 +57,10 @@
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="registerUser('register')">
-              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
-              確認
+              <span class="ml-1 mr-2" :class="{ 'd-none': !loading }">
+                <font-awesome-icon :icon="['fas', 'spinner']" spin />
+              </span>
+              <span>確認</span>
             </button>
           </div>
         </div>
@@ -77,7 +81,9 @@
         <div class="row no-gutters">
           <div class="modal__header text-white bg-danger p-3">
             <h5>刪除指定用戶</h5>
-            <i class="fas fa-times ml-auto" @click.prevent="close('delete')"></i>
+            <span class="ml-auto">
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('delete')" />
+            </span>
           </div>
         </div>
         <div class="row no-gutters">
@@ -94,8 +100,10 @@
               取消
             </button>
             <button class="btn btn--danger ml-2" @click.prevent="deleteUser('delete')">
-              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
-              確認
+              <span class="ml-1 mr-2" :class="{ 'd-none': !loading }">
+                <font-awesome-icon :icon="['fas', 'spinner']" spin />
+              </span>
+              <span>確認</span>
             </button>
           </div>
         </div>
@@ -116,7 +124,9 @@
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>調整指定用戶</h5>
-            <i class="fas fa-times ml-auto" @click.prevent="close('adjust')"></i>
+            <span class="ml-auto">
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('adjust')" />
+            </span>
           </div>
         </div>
         <div class="row no-gutters">
@@ -134,8 +144,10 @@
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="adjustUser('adjust')">
-              <div class="loadingSpinner" :class="{ 'd-none': !loading }"></div>
-              確認
+              <span class="ml-1 mr-2" :class="{ 'd-none': !loading }">
+                <font-awesome-icon :icon="['fas', 'spinner']" spin />
+              </span>
+              <span>確認</span>
             </button>
           </div>
         </div>
@@ -155,7 +167,9 @@
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>搜尋結果</h5>
-            <i class="fas fa-times ml-auto" @click.prevent="close('search')"></i>
+            <span class="ml-auto">
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('search')" />
+            </span>
           </div>
         </div>
         <div class="row no-gutters">
@@ -224,7 +238,9 @@
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>撰寫收件人資料</h5>
-            <i class="fas fa-times ml-auto" @click.prevent="close('mail')"></i>
+            <span class="ml-auto">
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('mail')" />
+            </span>
           </div>
         </div>
         <div class="row no-gutters">

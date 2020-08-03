@@ -57,8 +57,8 @@
               class="hide-btn"
               @click.prevent="passwordType = passwordType === 'password' ? 'text' : 'password'"
             >
-              <i class="far fa-eye-slash" v-if="passwordType === 'password'"></i>
-              <i class="far fa-eye" v-else></i>
+              <font-awesome-icon :icon="['far', 'eye-slash']" v-if="passwordType === 'password'" />
+              <font-awesome-icon :icon="['far', 'eye']" v-else />
             </span>
             <span class="error-message mt-1">{{ errors[0] }}</span>
           </ValidationProvider>

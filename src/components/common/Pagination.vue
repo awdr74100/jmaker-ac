@@ -1,34 +1,24 @@
 <template>
   <div class="pagination">
-    <ul class="list">
-      <li class="list__item">
-        <a
-          href="#"
-          class="prev"
-          :class="{ 'prev--disabled': nowPage === 1 }"
-          @click.prevent="togglePage(nowPage - 1)"
-          ><i class="fas fa-chevron-left"></i
-        ></a>
-      </li>
-      <li class="list__item" v-for="index in pages" :key="index">
-        <a
-          href="#"
-          class="page"
-          :class="{ 'page--active': index === nowPage }"
-          @click.prevent="togglePage(index)"
-          >{{ index }}</a
-        >
-      </li>
-      <li class="list__item">
-        <a
-          href="#"
-          class="next"
-          :class="{ 'next--disabled': nowPage === pages || pages === 0 }"
-          @click.prevent="togglePage(nowPage + 1)"
-          ><i class="fas fa-chevron-right"></i
-        ></a>
-      </li>
-    </ul>
+    <button
+      class="pagination__arrow left"
+      :disabled="nowPage === 1"
+      @click.prevent="togglePage(nowPage - 1)"
+    >
+      <i></i><i></i>
+    </button>
+    <div class="pagination__page">
+      {{ pages === 0 ? 0 : nowPage }}
+      <span class="mx-1">/</span>
+      {{ pages }}
+    </div>
+    <button
+      class="pagination__arrow right"
+      :disabled="nowPage === pages || pages === 0"
+      @click.prevent="togglePage(nowPage + 1)"
+    >
+      <i></i><i></i>
+    </button>
   </div>
 </template>
 

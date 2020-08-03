@@ -7,12 +7,14 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import { Skeleton } from 'vue-loading-skeleton';
 import VueProgressBar from 'vue-progressbar';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import datetime from './filter/datetime';
 import './validation';
+import './fontAwesome';
 
 Vue.use(VueAxios, axios);
 Vue.use(VModal);
@@ -23,6 +25,7 @@ Vue.use(VueProgressBar, {
 
 Vue.filter('datetime', datetime);
 
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('Loading', Loading);

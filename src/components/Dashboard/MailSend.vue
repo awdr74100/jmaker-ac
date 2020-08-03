@@ -14,7 +14,7 @@
       >
         <div class="mailSend__inner">
           <input type="file" class="file" @change="inputChnage" />
-          <span><i class="far fa-image fa-5x"></i></span>
+          <span><font-awesome-icon :icon="['fas', 'image']" size="5x"/></span>
           <span class="mt-2">Drop image here</span>
           <small class="mt-4 mx-3">Accepted file types: JPG, PNG, GIF. Up to 1MB </small>
         </div>

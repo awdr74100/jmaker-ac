@@ -1,8 +1,11 @@
 <template>
   <div class="dashboardSidebar text-secondary">
-    <div class="dashboardSidebar__account">
-      <i class="fa fa-user-circle"></i>
-      <span class="ml-3">{{ nickname }}</span>
+    <div class="dashboardSidebar__account p-3">
+      <span><font-awesome-icon :icon="['fas', 'user']" size="lg"/></span>
+      <div class="ml-3">
+        <p>{{ account.nickname === 'root' ? '系統管理員' : account.nickname }}</p>
+        <p class="mt-1">{{ account.email }}</p>
+      </div>
     </div>
     <nav class="dashboardSidebar__nav">
       <ul class="dashboardSidebar__list">
@@ -12,8 +15,10 @@
             class="dashboardSidebar__link"
             :class="{ 'dashboardSidebar__link--active': visibility === 'RegisterUser' }"
             @click.native="sidebarToggle"
-            ><i class="fas fa-check mr-3 pl-3 py-3"></i> 實體用戶註冊</router-link
           >
+            <span class="py-3 ml-3"><font-awesome-icon :icon="['fas', 'check']"/></span>
+            <p class="ml-3">實體用戶註冊</p>
+          </router-link>
         </li>
         <li class="dashboardSidebar__item">
           <router-link
@@ -21,8 +26,10 @@
             class="dashboardSidebar__link"
             :class="{ 'dashboardSidebar__link--active': visibility === 'AdjustUser' }"
             @click.native="sidebarToggle"
-            ><i class="fa fa-tasks mr-3 pl-3 py-3"></i> 調整用戶權限</router-link
           >
+            <span class="py-3 ml-3"><font-awesome-icon :icon="['fas', 'tasks']"/></span>
+            <p class="ml-3">調整用戶權限</p>
+          </router-link>
         </li>
       </ul>
       <ul class="dashboardSidebar__list">
@@ -32,8 +39,12 @@
             class="dashboardSidebar__link"
             :class="{ 'dashboardSidebar__link--active': visibility === 'MailSend' }"
             @click.native="sidebarToggle"
-            ><i class="fas fa-envelope-open-text mr-3 pl-3 py-3"></i> 違規訊息推播</router-link
           >
+            <span class="py-3 ml-3"
+              ><font-awesome-icon :icon="['fas', 'envelope-open-text']"
+            /></span>
+            <p class="ml-3">違規訊息推播</p>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -53,10 +64,8 @@ export default {
     visibility() {
       return this.$route.name;
     },
-    nickname() {
-      const { nickname } = JSON.parse(localStorage.getItem('account'));
-      if (nickname === 'root') return '系統管理員';
-      return nickname;
+    account() {
+      return JSON.parse(localStorage.getItem('account'));
     },
   },
 };
