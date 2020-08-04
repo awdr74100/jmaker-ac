@@ -13,7 +13,7 @@
       />
       <span><font-awesome-icon :icon="['fas', 'search']"/></span>
     </div>
-    <a href="#" class="dashboardHeader__btn ml-md-auto ml-2" @click.prevent="logout">
+    <a href="#" class="dashboardHeader__btn ml-auto ml-2" @click.prevent="logout">
       <span class="mr-2">登出</span>
       <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
     </a>

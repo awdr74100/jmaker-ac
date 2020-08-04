@@ -8,11 +8,12 @@
         <Sidebar />
       </div>
       <div class="dashboardMainLayout">
-        <div class="dashboardMainLayout__drawer" @click="sidebarToggle"></div>
         <router-view></router-view>
       </div>
     </div>
-    <!--Modal -->
+    <!-- Drawer -->
+    <div class="dashboardDrawer" @click="sidebarToggle"></div>
+    <!-- Modal -->
     <Modal />
   </div>
 </template>

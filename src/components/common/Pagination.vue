@@ -2,20 +2,20 @@
   <div class="pagination">
     <button
       class="pagination__arrow left"
-      :disabled="nowPage === 1"
-      @click.prevent="togglePage(nowPage - 1)"
+      :disabled="page === 1"
+      @click.prevent="togglePage(page - 1)"
     >
       <i></i><i></i>
     </button>
     <div class="pagination__page">
-      {{ pages === 0 ? 0 : nowPage }}
-      <span class="mx-1">/</span>
+      {{ pages === 0 ? 0 : page }}
+      <span>/</span>
       {{ pages }}
     </div>
     <button
       class="pagination__arrow right"
-      :disabled="nowPage === pages || pages === 0"
-      @click.prevent="togglePage(nowPage + 1)"
+      :disabled="page === pages || pages === 0"
+      @click.prevent="togglePage(page + 1)"
     >
       <i></i><i></i>
     </button>
@@ -25,22 +25,23 @@
 <script>
 export default {
   props: {
-    count: Number,
+    length: Number,
+    column: Number,
   },
   data() {
     return {
-      nowPage: 1,
+      page: 1,
     };
   },
   methods: {
-    togglePage(index) {
-      this.nowPage = index;
-      this.$emit('callTogglePage', index);
+    togglePage(page) {
+      this.page = page;
+      this.$emit('callTogglePage', page);
     },
   },
   computed: {
     pages() {
-      return Math.ceil(this.count / 8);
+      return Math.ceil(this.length / this.column);
     },
   },
 };

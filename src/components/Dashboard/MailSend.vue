@@ -3,7 +3,7 @@
     <div class="row">
       <h1 class="mailSend__title">違規訊息推播</h1>
     </div>
-    <div class="row no-gutters mt-3 copy">
+    <div class="row no-gutters my-3 copy">
       <div
         class="mailSend__section p-4"
         :class="{ 'mailSend__section--active': uploadActive }"

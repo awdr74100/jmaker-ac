@@ -5,8 +5,8 @@
   justify-content: center;
 
   &__page {
-    color: theme-color('secondary');
-    margin: 0px 20px;
+    color: theme-color('primary');
+    margin: 0px 24px;
     font-size: 15px;
   }
 
@@ -15,14 +15,14 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 10px;
+    padding: 6px;
     background-color: transparent;
     border: none;
 
     i {
       position: absolute;
-      width: 20px;
-      height: 3px;
+      width: 12px;
+      height: 2px;
       border-radius: 10px;
       background: theme-color('primary');
       transition: all 0.3s ease;
@@ -34,10 +34,10 @@
         transform-origin: left center;
       }
       i:first-child {
-        transform: translate(0, -1px) rotate(40deg);
+        transform: translate(0, -0.5px) rotate(40deg);
       }
       i:last-child {
-        transform: translate(0, 1px) rotate(-40deg);
+        transform: translate(0, 0.5px) rotate(-40deg);
       }
       &:hover i:first-child {
         transform: translate(0px, -0.5px) rotate(30deg);
@@ -64,10 +64,10 @@
         transform-origin: right center;
       }
       i:first-child {
-        transform: translate(0, 1px) rotate(40deg);
+        transform: translate(0, 0.5px) rotate(40deg);
       }
       i:last-child {
-        transform: translate(0, -1px) rotate(-40deg);
+        transform: translate(0, -0.5px) rotate(-40deg);
       }
       &:hover i:first-child {
         transform: translate(0, 0.5px) rotate(30deg);

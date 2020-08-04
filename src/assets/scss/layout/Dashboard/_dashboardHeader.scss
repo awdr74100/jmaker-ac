@@ -22,7 +22,11 @@
   }
   &__input {
     position: relative;
-    width: 300px;
+    flex-grow: 1;
+    @include desktop {
+      width: 300px;
+      flex-grow: 0;
+    }
 
     span {
       position: absolute;
