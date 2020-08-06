@@ -9,7 +9,7 @@ export default {
   },
   actions: {
     async getUsers({ commit, dispatch }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users`;
       const options = { root: true };
       commit('SKELETONACTIVE', true, options);
       try {
@@ -25,7 +25,7 @@ export default {
       }
     },
     async getUser({ commit, dispatch }, { userid }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users/${userid}`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${userid}`;
       const options = { root: true };
       commit('LOADING', true, options);
       try {
@@ -42,7 +42,7 @@ export default {
       }
     },
     async registerUser({ dispatch }, { id, username, userid }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users/${id}`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}`;
       const data = {
         username,
         userid,
@@ -61,7 +61,7 @@ export default {
       }
     },
     async deleteUser({ dispatch }, { id }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users/${id}`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}`;
       const options = { root: true };
       try {
         const res = await axios.delete(url);
@@ -76,7 +76,7 @@ export default {
       }
     },
     async adjustAuth({ dispatch }, { id, auth }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/users/${id}/auth`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}/auth`;
       const data = {
         auth,
       };

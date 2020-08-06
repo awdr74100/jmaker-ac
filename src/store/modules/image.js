@@ -21,7 +21,7 @@ export default {
       });
     },
     async uploadImage({ commit, dispatch }, { file }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/upload`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/upload`;
       const formData = new FormData();
       formData.append('image', file);
       const options = { root: true };

@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   actions: {
     async mailSend({ commit, dispatch }, { payload }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/mail`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/mail`;
       const data = {
         nickname: payload.nickname,
         email: payload.email,

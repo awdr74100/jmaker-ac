@@ -12,7 +12,7 @@ export default {
   },
   actions: {
     async login({ dispatch, commit }, { email, password }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/admin/login`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/login`;
       const data = {
         email,
         password,
@@ -37,7 +37,7 @@ export default {
       }
     },
     async logout({ dispatch, commit }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/admin/logout`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/logout`;
       const options = { root: true };
       try {
         const res = await axios.post(url);
@@ -50,7 +50,7 @@ export default {
       }
     },
     async check({ dispatch, commit }, { from }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/admin/check`;
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/check`;
       const options = { root: true };
       vm.$Progress.start();
       try {
