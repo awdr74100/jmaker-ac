@@ -37,3 +37,7 @@ export default {
   computed: mapState('alert', ['messages']),
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/common/alert.scss';
+</style>

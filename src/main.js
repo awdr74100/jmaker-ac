@@ -20,7 +20,7 @@ Vue.use(VueAxios, axios);
 Vue.use(VModal);
 Vue.use(VueProgressBar, {
   color: '#fff',
-  thickness: '3px',
+  thickness: '2px',
 });
 
 Vue.filter('datetime', datetime);

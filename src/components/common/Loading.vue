@@ -23,3 +23,7 @@ export default {
   computed: mapState(['isLoading']),
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/common/loading.scss';
+</style>

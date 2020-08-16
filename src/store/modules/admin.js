@@ -8,11 +8,11 @@ export default {
   strict: true,
   namespaced: true,
   state: {
-    isLogin: false,
+    isSignin: false,
   },
   actions: {
-    async login({ dispatch, commit }, { email, password }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/login`;
+    async signin({ dispatch, commit }, { email, password }) {
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/signin`;
       const data = {
         email,
         password,
@@ -28,21 +28,21 @@ export default {
         }
         localStorage.setItem('account', JSON.stringify(res.data.admin));
         commit('LOADING', false, options);
-        commit('ISLOGIN', true);
-        router.push({ path: '/admin' });
+        commit('ISSIGNIN', true);
+        router.push({ path: '/admin/register' });
         dispatch('alert/updateMessage', { message: '登入成功', status: 'success' }, options);
       } catch (error) {
         commit('LOADING', false, options);
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },
-    async logout({ dispatch, commit }) {
-      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/logout`;
+    async signout({ dispatch, commit }) {
+      const url = `${process.env.VUE_APP_BASE_URL}/api/admin/signout`;
       const options = { root: true };
       try {
         const res = await axios.post(url);
         localStorage.removeItem('account');
-        commit('ISLOGIN', false);
+        commit('ISSIGNIN', false);
         router.push({ path: '/' });
         dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
       } catch (error) {
@@ -57,7 +57,7 @@ export default {
         const res = await axios.post(url);
         if (!res.data.success) {
           localStorage.removeItem('account');
-          commit('ISLOGIN', false);
+          commit('ISSIGNIN', false);
           if (from.path === '/') {
             dispatch('alert/updateMessage', { message: '請先登入', status: 'danger' }, options);
           } else {
@@ -66,15 +66,15 @@ export default {
           return;
         }
         vm.$Progress.finish();
-        commit('ISLOGIN', true);
+        commit('ISSIGNIN', true);
       } catch (error) {
         dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
       }
     },
   },
   mutations: {
-    ISLOGIN(state, status) {
-      state.isLogin = status;
+    ISSIGNIN(state, status) {
+      state.isSignin = status;
     },
   },
 };

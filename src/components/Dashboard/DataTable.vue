@@ -1,5 +1,5 @@
 <template>
-  <div class="userTable">
+  <div class="data-table">
     <!-- register -->
     <table class="table" v-if="view === 'register'">
       <thead class="bg-primary text-white">
@@ -199,9 +199,16 @@ export default {
           if (vm.view === 'adjust') return item.register_at !== null;
           return item.register_at === null;
         })
-        .sort((a, b) => (a.created_at > b.created_at ? sortA : sortB))
+        .sort((a, b) => {
+          if (vm.view === 'adjust') return a.register_at > b.register_at ? sortA : sortB;
+          return a.created_at > b.created_at ? sortA : sortB;
+        })
         .slice(startIndex, endIndex);
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Dashboard/data-table.scss';
+</style>

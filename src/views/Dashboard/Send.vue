@@ -1,18 +1,18 @@
 <template>
   <main class="container-fluid">
     <div class="row">
-      <h1 class="mailSend__title">違規訊息推播</h1>
+      <h1 class="send__title">違規訊息推播</h1>
     </div>
     <div class="row no-gutters my-3 copy">
       <div
-        class="mailSend__section p-4"
-        :class="{ 'mailSend__section--active': uploadActive }"
+        class="send__section p-4"
+        :class="{ 'send__section--active': uploadActive }"
         @click="inputClick"
         @dragleave="dragLeave"
         @dragover="dragOver"
         @drop="drop('mail', $event)"
       >
-        <div class="mailSend__inner">
+        <div class="send__inner">
           <input type="file" class="file" @change="inputChnage" />
           <span><font-awesome-icon :icon="['fas', 'image']" size="5x"/></span>
           <span class="mt-2">Drop image here</span>
@@ -36,7 +36,7 @@ export default {
     },
     async inputChnage(e) {
       const file = e.target.files[0];
-      const regex = /\.(gif|jpg?g|png)$/i;
+      const regex = /\.(gif|jpe?g|png)$/i;
       if (!regex.test(file.name)) {
         this.$store.dispatch('alert/updateMessage', {
           message: '不支援的檔案格式',
@@ -70,7 +70,7 @@ export default {
       e.stopPropagation();
       this.uploadActive = false;
       const file = e.dataTransfer.files[0];
-      const regex = /\.(gif|jpg?g|png)$/i;
+      const regex = /\.(gif|jpe?g|png)$/i;
       if (!regex.test(file.name)) {
         this.$store.dispatch('alert/updateMessage', {
           message: '不支援的檔案格式',
@@ -91,3 +91,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/views/Dashboard/send.scss';
+</style>

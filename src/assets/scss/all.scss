@@ -15,21 +15,9 @@
 
 // layout
 @import './layout/grid';
-@import './layout/Dashboard/dashboardLayout';
-@import './layout/Dashboard/dashboardHeader';
-@import './layout/Dashboard/dashboardSidebar';
 
-// component
-@import './component/button';
-@import './component/common/alert';
-@import './component/common/hamburger';
-@import './component/common/pagination';
-@import './component/common/select';
-@import './component/common/loading';
-@import './component/Login/loginForm';
-@import './component/Dashboard/registerUser';
-@import './component/Dashboard/adjustUser';
-@import './component/Dashboard/panelGroup';
-@import './component/Dashboard/userTable';
-@import './component/Dashboard/modal';
-@import './component/Dashboard/mailSend';
+// components
+@import './components/button';
+
+// vendors
+@import './vendors/vue-js-modal';

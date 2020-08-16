@@ -2,19 +2,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-5">
-        <LoginForm />
+        <SigninForm />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import LoginForm from '@/components/Login/LoginForm.vue';
+import SigninForm from '@/components/Signin/SigninForm.vue';
 
 export default {
-  name: 'Login',
+  name: 'Signin',
   components: {
-    LoginForm,
+    SigninForm,
   },
 };
 </script>

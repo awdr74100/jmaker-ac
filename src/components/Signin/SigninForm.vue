@@ -1,14 +1,14 @@
 <template>
-  <div class="loginForm p-4 mt-6 mb-6">
+  <div class="signin-form p-4 mt-6 mb-6">
     <div class="logo"></div>
-    <h1 class="loginForm__title mt-4">登入管理員帳號</h1>
-    <ValidationObserver ref="loginForm">
-      <form @submit.prevent="login">
-        <div class="loginForm__section mt-4">
+    <h1 class="signin-form__title mt-4">登入管理員帳號</h1>
+    <ValidationObserver ref="signin-form">
+      <form @submit.prevent="signin">
+        <div class="signin-form__section mt-4">
           <label
             for="inputEmail"
-            class="loginForm__label"
-            :class="{ 'loginForm__label--active': inputStatus.email }"
+            class="signin-form__label"
+            :class="{ 'signin-form__label--active': inputStatus.email }"
             >Email</label
           >
           <ValidationProvider
@@ -19,8 +19,8 @@
           >
             <input
               type="email"
-              class="loginForm__input loginForm__input--email"
-              :class="{ 'loginForm__input--error': failed }"
+              class="signin-form__input signin-form__input--email"
+              :class="{ 'signin-form__input--error': failed }"
               id="inputEmail"
               autocomplete="off"
               v-model="account.email"
@@ -30,11 +30,11 @@
             <span class="error-message mt-1">{{ errors[0] }}</span>
           </ValidationProvider>
         </div>
-        <div class="loginForm__section mt-4">
+        <div class="signin-form__section mt-4">
           <label
             for="inputPassword"
-            class="loginForm__label"
-            :class="{ 'loginForm__label--active': inputStatus.password }"
+            class="signin-form__label"
+            :class="{ 'signin-form__label--active': inputStatus.password }"
             >Password</label
           >
           <ValidationProvider
@@ -45,8 +45,8 @@
           >
             <input
               :type="passwordType"
-              class="loginForm__input loginForm__input--password"
-              :class="{ 'loginForm__input--error': failed }"
+              class="signin-form__input signin-form__input--password"
+              :class="{ 'signin-form__input--error': failed }"
               id="inputPassword"
               autocomplete="off"
               v-model="account.password"
@@ -63,7 +63,7 @@
             <span class="error-message mt-1">{{ errors[0] }}</span>
           </ValidationProvider>
         </div>
-        <button class="btn btn--block btn--secondary loginForm__btn mt-4" @click.prevent="login">
+        <button class="btn btn--block btn--secondary signin-form__btn mt-4" @click.prevent="signin">
           登入
         </button>
       </form>
@@ -91,11 +91,15 @@ export default {
       if (this.account[input] !== '') return;
       this.inputStatus[input] = false;
     },
-    async login() {
-      const valid = await this.$refs.loginForm.validate();
+    async signin() {
+      const valid = await this.$refs['signin-form'].validate();
       if (!valid) return;
-      this.$store.dispatch('admin/login', this.account);
+      this.$store.dispatch('admin/signin', this.account);
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Signin/signin-form.scss';
+</style>

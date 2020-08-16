@@ -442,3 +442,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Dashboard/modal.scss';
+</style>

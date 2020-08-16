@@ -1,10 +1,10 @@
 <template>
-  <header class="dashboardHeader bg-primary">
-    <div class="dashboardHeader__menu mr-2 mr-md-0" @click="sidebarToggle">
+  <header class="header bg-primary">
+    <div class="header__menu mr-2 mr-md-0" @click="sidebarToggle">
       <Hamburger />
     </div>
-    <div href="#" class="dashboardHeader__logo mr-2"></div>
-    <div class="dashboardHeader__input ml-md-5">
+    <div href="#" class="header__logo mr-2"></div>
+    <div class="header__input ml-md-5">
       <input
         type="text"
         placeholder="檢查學號的當前狀態"
@@ -13,7 +13,7 @@
       />
       <span><font-awesome-icon :icon="['fas', 'search']"/></span>
     </div>
-    <a href="#" class="dashboardHeader__btn ml-auto ml-2" @click.prevent="logout">
+    <a href="#" class="header__btn ml-auto ml-2" @click.prevent="signout">
       <span class="mr-2">登出</span>
       <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
     </a>
@@ -34,7 +34,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('admin', ['logout']),
+    ...mapActions('admin', ['signout']),
     sidebarToggle() {
       const status = this.$store.state.openSidebar;
       this.$store.commit('SIDEBARTOGGLE', !status);
@@ -63,3 +63,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Dashboard/header.scss';
+</style>

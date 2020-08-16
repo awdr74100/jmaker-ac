@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Login from '@/views/Login/Layout.vue';
+import Signin from '@/views/Signin/index.vue';
 
 Vue.use(VueRouter);
 
@@ -11,30 +11,31 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Login',
-    component: Login,
+    name: 'Signin',
+    component: Signin,
   },
   {
     path: '/admin',
-    component: () => import('@/views/Dashboard/Layout.vue'),
+    redirect: '/admin/register',
+    component: () => import('@/views/Dashboard/index.vue'),
     children: [
       {
-        path: '',
-        name: 'RegisterUser',
+        path: 'register',
+        name: 'Register',
         meta: { requiresAuth: true },
-        component: () => import('@/components/Dashboard/RegisterUser.vue'),
+        component: () => import('@/views/Dashboard/Register.vue'),
       },
       {
         path: 'adjust',
-        name: 'AdjustUser',
+        name: 'Adjust',
         meta: { requiresAuth: true },
-        component: () => import('@/components/Dashboard/AdjustUser.vue'),
+        component: () => import('@/views/Dashboard/Adjust.vue'),
       },
       {
-        path: 'mail',
-        name: 'MailSend',
+        path: 'send',
+        name: 'Send',
         meta: { requiresAuth: true },
-        component: () => import('@/components/Dashboard/MailSend.vue'),
+        component: () => import('@/views/Dashboard/Send.vue'),
       },
     ],
   },
@@ -49,7 +50,7 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     await router.app.$options.store.dispatch('admin/check', { from });
-    if (router.app.$options.store.state.admin.isLogin) next();
+    if (router.app.$options.store.state.admin.isSignin) next();
     else next('/');
   } else {
     next();

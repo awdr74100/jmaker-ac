@@ -1,37 +1,37 @@
 <template>
-  <div class="panelGroup">
+  <div class="panel-group">
     <ul class="row">
       <li class="col-lg-3 col-6 mt-3">
-        <div class="panelGroup__item p-3">
+        <div class="panel-group__item p-3">
           <span><font-awesome-icon :icon="['fas', 'users']" size="2x"/></span>
-          <div class="panelGroup__info">
+          <div class="panel-group__info">
             <p class="mb-2">註冊人數</p>
             <span>{{ allUsers }}</span>
           </div>
         </div>
       </li>
       <li class="col-lg-3 col-6 mt-3">
-        <div class="panelGroup__item p-3">
+        <div class="panel-group__item p-3">
           <span><font-awesome-icon :icon="['fas', 'user-check']" size="2x"/></span>
-          <div class="panelGroup__info">
+          <div class="panel-group__info">
             <p class="mb-2">實體用戶</p>
             <span>{{ physicalUser }}</span>
           </div>
         </div>
       </li>
       <li class="col-lg-3 col-6 mt-3">
-        <div class="panelGroup__item p-3">
+        <div class="panel-group__item p-3">
           <span><font-awesome-icon :icon="['fas', 'user-minus']" size="2x"/></span>
-          <div class="panelGroup__info">
+          <div class="panel-group__info">
             <p class="mb-2">匿名用戶</p>
             <span>{{ anonymousUser }}</span>
           </div>
         </div>
       </li>
       <li class="col-lg-3 col-6 mt-3">
-        <div class="panelGroup__item p-3">
+        <div class="panel-group__item p-3">
           <span><font-awesome-icon :icon="['fas', 'user-alt-slash']" size="2x"/></span>
-          <div class="panelGroup__info">
+          <div class="panel-group__info">
             <p class="mb-2">移除權限</p>
             <span>{{ removeUser }}</span>
           </div>
@@ -66,3 +66,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Dashboard/panel-group.scss';
+</style>

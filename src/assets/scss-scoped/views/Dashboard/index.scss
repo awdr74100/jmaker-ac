@@ -1,10 +1,10 @@
-.dashboardHeaderLayout {
+.header-layout {
   position: fixed;
   width: 100%;
   z-index: 5;
 }
 
-.dashboardSidebarLayout {
+.sidebar-layout {
   position: fixed;
   top: 0px;
   height: 100%;
@@ -23,7 +23,7 @@
   }
 }
 
-.dashboardMainLayout {
+.main-layout {
   width: 100%;
   position: relative;
   margin-top: 66px;
@@ -36,7 +36,7 @@
   }
 }
 
-.dashboardDrawer {
+.drawer {
   position: fixed;
   top: 0;
   bottom: 0;

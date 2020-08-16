@@ -2,7 +2,7 @@
   <div id="app">
     <Loading />
     <Alert />
-    <Progress />
+    <ProgressBar />
     <router-view></router-view>
   </div>
 </template>
@@ -10,13 +10,13 @@
 <script>
 import Loading from '@/components/common/Loading.vue';
 import Alert from '@/components/common/Alert.vue';
-import Progress from '@/components/common/Progress.vue';
+import ProgressBar from '@/components/common/ProgressBar.vue';
 
 export default {
   components: {
     Loading,
     Alert,
-    Progress,
+    ProgressBar,
   },
 };
 </script>

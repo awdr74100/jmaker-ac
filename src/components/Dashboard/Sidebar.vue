@@ -1,30 +1,30 @@
 <template>
-  <div class="dashboardSidebar text-secondary">
-    <div class="dashboardSidebar__account p-3">
+  <div class="sidebar text-secondary">
+    <div class="sidebar__account p-3">
       <span><font-awesome-icon :icon="['fas', 'user']" size="lg"/></span>
       <div class="ml-3">
         <p>{{ account.nickname === 'root' ? '系統管理員' : account.nickname }}</p>
         <p class="mt-1">{{ account.email }}</p>
       </div>
     </div>
-    <nav class="dashboardSidebar__nav">
-      <ul class="dashboardSidebar__list">
-        <li class="dashboardSidebar__item">
+    <nav class="sidebar__nav">
+      <ul class="sidebar__list">
+        <li class="sidebar__item">
           <router-link
-            to="/admin"
-            class="dashboardSidebar__link"
-            :class="{ 'dashboardSidebar__link--active': visibility === 'RegisterUser' }"
+            to="/admin/register"
+            class="sidebar__link"
+            :class="{ 'sidebar__link--active': visibility === 'Register' }"
             @click.native="sidebarToggle"
           >
             <span class="py-3 ml-3"><font-awesome-icon :icon="['fas', 'check']"/></span>
             <p class="ml-3">實體用戶註冊</p>
           </router-link>
         </li>
-        <li class="dashboardSidebar__item">
+        <li class="sidebar__item">
           <router-link
             to="/admin/adjust"
-            class="dashboardSidebar__link"
-            :class="{ 'dashboardSidebar__link--active': visibility === 'AdjustUser' }"
+            class="sidebar__link"
+            :class="{ 'sidebar__link--active': visibility === 'Adjust' }"
             @click.native="sidebarToggle"
           >
             <span class="py-3 ml-3"><font-awesome-icon :icon="['fas', 'tasks']"/></span>
@@ -32,12 +32,12 @@
           </router-link>
         </li>
       </ul>
-      <ul class="dashboardSidebar__list">
-        <li class="dashboardSidebar__item">
+      <ul class="sidebar__list">
+        <li class="sidebar__item">
           <router-link
-            to="/admin/mail"
-            class="dashboardSidebar__link"
-            :class="{ 'dashboardSidebar__link--active': visibility === 'MailSend' }"
+            to="/admin/send"
+            class="sidebar__link"
+            :class="{ 'sidebar__link--active': visibility === 'Send' }"
             @click.native="sidebarToggle"
           >
             <span class="py-3 ml-3"
@@ -70,3 +70,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss-scoped/components/Dashboard/sidebar.scss';
+</style>
