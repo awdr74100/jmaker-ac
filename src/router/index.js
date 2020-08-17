@@ -6,10 +6,6 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '*',
-    redirect: '/',
-  },
-  {
     path: '/',
     name: 'Signin',
     component: Signin,
@@ -38,6 +34,14 @@ const routes = [
         component: () => import('@/views/Dashboard/Send.vue'),
       },
     ],
+  },
+  {
+    path: '/admin/*',
+    redirect: '/admin/register',
+  },
+  {
+    path: '*',
+    redirect: '/',
   },
 ];
 
