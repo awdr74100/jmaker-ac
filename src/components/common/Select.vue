@@ -1,7 +1,7 @@
 <template>
   <div class="select">
     <label for="select" class="text text-primary">每頁列數:</label>
-    <select id="select" class="text-primary ml-2" @change="toggleColumn" v-model.number="column">
+    <select id="select" class="text-primary ml-2" @change="toggleRow" v-model.number="row">
       <option value="8">8</option>
       <option value="16">16</option>
       <option value="32">32</option>
@@ -13,12 +13,12 @@
 export default {
   data() {
     return {
-      column: 8,
+      row: 8,
     };
   },
   methods: {
-    toggleColumn() {
-      this.$emit('callToggleColumn', this.column);
+    toggleRow() {
+      this.$emit('callToggleRow', this.row);
     },
   },
 };

@@ -10,87 +10,82 @@ export default {
   actions: {
     async getUsers({ commit, dispatch }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users`;
-      const options = { root: true };
-      commit('SKELETONACTIVE', true, options);
+      const root = { root: true };
+      commit('SKELETONACTIVE', true, root);
       try {
-        const res = await axios.get(url);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.get(url);
+        if (!data.success) {
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
-        commit('GETUSERS', res.data.users);
-        commit('SKELETONACTIVE', false, options);
+        commit('GETUSERS', data.users);
+        commit('SKELETONACTIVE', false, root);
       } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
     async getUser({ commit, dispatch }, { userid }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${userid}`;
-      const options = { root: true };
-      commit('LOADING', true, options);
+      const root = { root: true };
+      commit('LOADING', true, root);
       try {
-        const res = await axios.get(url);
-        if (!res.data.success) {
-          commit('LOADING', false, options);
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.get(url);
+        if (!data.success) {
+          commit('LOADING', false, root);
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
-        commit('LOADING', false, options);
-        commit('GETUSER', res.data.user);
+        commit('LOADING', false, root);
+        commit('GETUSER', data.user);
       } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
     async registerUser({ dispatch }, { id, username, userid }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}`;
-      const data = {
-        username,
-        userid,
-      };
-      const options = { root: true };
+      const payload = { username, userid };
+      const root = { root: true };
       try {
-        const res = await axios.patch(url, data);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.patch(url, payload);
+        if (!data.success) {
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
         dispatch('getUsers');
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
+        dispatch('alert/updateMessage', { message: data.message, status: 'success' }, root);
       } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
     async deleteUser({ dispatch }, { id }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}`;
-      const options = { root: true };
+      const root = { root: true };
       try {
-        const res = await axios.delete(url);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.delete(url);
+        if (!data.success) {
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
         dispatch('getUsers');
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
+        dispatch('alert/updateMessage', { message: data.message, status: 'success' }, root);
       } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
     async adjustAuth({ dispatch }, { id, auth }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/users/${id}/auth`;
-      const data = {
-        auth,
-      };
-      const options = { root: true };
+      const payload = { auth };
+      const root = { root: true };
       try {
-        const res = await axios.patch(url, data);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.patch(url, payload);
+        if (!data.success) {
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
         dispatch('getUsers');
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
+        dispatch('alert/updateMessage', { message: data.message, status: 'success' }, root);
       } catch (error) {
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
   },

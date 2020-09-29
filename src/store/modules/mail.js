@@ -4,28 +4,28 @@ export default {
   strict: true,
   namespaced: true,
   actions: {
-    async mailSend({ commit, dispatch }, { payload }) {
+    async mailSend({ commit, dispatch }, { mailData }) {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/mail`;
-      const data = {
-        nickname: payload.nickname,
-        email: payload.email,
-        subject: payload.subject,
-        imgUrl: payload.imgUrl,
-        content: payload.content,
+      const payload = {
+        nickname: mailData.nickname,
+        email: mailData.email,
+        subject: mailData.subject,
+        imgUrl: mailData.imgUrl,
+        content: mailData.content,
       };
-      const options = { root: true };
+      const root = { root: true };
       try {
-        const res = await axios.post(url, data);
-        if (!res.data.success) {
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
-          commit('LOADING', false, options);
+        const { data } = await axios.post(url, payload);
+        if (!data.success) {
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
+          commit('LOADING', false, root);
           return;
         }
-        commit('LOADING', false, options);
-        dispatch('alert/updateMessage', { message: res.data.message, status: 'success' }, options);
+        commit('LOADING', false, root);
+        dispatch('alert/updateMessage', { message: data.message, status: 'success' }, root);
       } catch (error) {
-        commit('LOADING', false, options);
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        commit('LOADING', false, root);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
   },

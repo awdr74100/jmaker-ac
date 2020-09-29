@@ -2,7 +2,7 @@
   <div class="signin-form p-4 mt-6 mb-6">
     <div class="logo"></div>
     <h1 class="signin-form__title mt-4">登入管理員帳號</h1>
-    <ValidationObserver ref="signin-form">
+    <ValidationObserver ref="signin-form" slim>
       <form @submit.prevent="signin">
         <div class="signin-form__section mt-4">
           <label

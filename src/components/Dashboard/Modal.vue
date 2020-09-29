@@ -4,30 +4,30 @@
     <modal
       v-if="user"
       name="register"
-      @before-open="beforeOpen"
+      height="auto"
       :adaptive="true"
       :shiftY="0.2"
-      height="auto"
       :width="500"
       :max-width="maxWidth"
-      :clickToClose="false"
+      @before-open="beforeOpen"
+      @before-close="closeModal(null)"
       ><div class="container-fluid px-0">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>實體用戶註冊</h5>
             <span class="ml-auto">
-              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('register')" />
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="closeModal('register')" />
             </span>
           </div>
         </div>
         <div class="row no-gutters">
           <div class="modal__body p-3">
-            <ValidationObserver ref="registerForm">
+            <ValidationObserver ref="registerForm" slim>
               <form>
                 <label for="id" class="modal__label mb-2">識別碼</label>
                 <input type="text" id="id" class="modal__input mb-3" :value="user._id" disabled />
                 <label for="userName" class="modal__label mb-2">姓名</label>
-                <ValidationProvider tag="div" rules="required" name="userName" v-slot="{ failed }">
+                <ValidationProvider rules="required" v-slot="{ failed }" slim>
                   <input
                     type="text"
                     id="userName"
@@ -37,7 +37,7 @@
                   />
                 </ValidationProvider>
                 <label for="userId" class="modal__label mb-2">學號</label>
-                <ValidationProvider tag="div" rules="required" name="userId" v-slot="{ failed }">
+                <ValidationProvider rules="required" v-slot="{ failed }" slim>
                   <input
                     type="text"
                     id="userId"
@@ -53,7 +53,7 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__footer px-3 py-2">
-            <button class="btn btn--gray" @click.prevent="close('register')">
+            <button class="btn btn--gray" @click.prevent="closeModal('register')">
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="registerUser('register')">
@@ -70,19 +70,19 @@
     <modal
       v-if="user"
       name="delete"
-      @before-open="beforeOpen"
+      height="auto"
       :adaptive="true"
       :shiftY="0.2"
-      height="auto"
       :width="500"
       :max-width="maxWidth"
-      :clickToClose="false"
+      @before-open="beforeOpen"
+      @before-close="closeModal(null)"
       ><div class="container-fluid px-0">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-danger p-3">
             <h5>刪除指定用戶</h5>
             <span class="ml-auto">
-              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('delete')" />
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="closeModal('delete')" />
             </span>
           </div>
         </div>
@@ -96,7 +96,7 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__footer px-3 py-2">
-            <button class="btn btn--gray" @click.prevent="close('delete')">
+            <button class="btn btn--gray" @click.prevent="closeModal('delete')">
               取消
             </button>
             <button class="btn btn--danger ml-2" @click.prevent="deleteUser('delete')">
@@ -113,19 +113,19 @@
     <modal
       v-if="user"
       name="adjust"
-      @before-open="beforeOpen"
+      height="auto"
       :adaptive="true"
       :shiftY="0.2"
-      height="auto"
       :width="500"
       :max-width="maxWidth"
-      :clickToClose="false"
+      @before-open="beforeOpen"
+      @before-close="closeModal(null)"
       ><div class="container-fluid px-0">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>調整指定用戶</h5>
             <span class="ml-auto">
-              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('adjust')" />
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="closeModal('adjust')" />
             </span>
           </div>
         </div>
@@ -140,7 +140,7 @@
         </div>
         <div class="row no-gutters">
           <div class="modal__footer px-3 py-2">
-            <button class="btn btn--gray" @click.prevent="close('adjust')">
+            <button class="btn btn--gray" @click.prevent="closeModal('adjust')">
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="adjustUser('adjust')">
@@ -156,19 +156,19 @@
     <!-- search -->
     <modal
       name="search"
-      @before-open="beforeOpen"
+      height="auto"
       :adaptive="true"
       :shiftY="0.2"
-      height="auto"
       :width="500"
       :max-width="maxWidth"
-      :clickToClose="false"
+      @before-open="beforeOpen"
+      @before-close="closeModal(null)"
       ><div class="container-fluid px-0">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>搜尋結果</h5>
             <span class="ml-auto">
-              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('search')" />
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="closeModal('search')" />
             </span>
           </div>
         </div>
@@ -227,19 +227,19 @@
     <!-- mail -->
     <modal
       name="mail"
-      @before-open="beforeOpen"
+      height="auto"
       :adaptive="true"
       :shiftY="0.2"
-      height="auto"
       :width="500"
       :max-width="maxWidth"
-      :clickToClose="false"
+      @before-open="beforeOpen"
+      @before-close="closeModal(null)"
       ><div class="container-fluid px-0 modal">
         <div class="row no-gutters">
           <div class="modal__header text-white bg-primary p-3">
             <h5>撰寫收件人資料</h5>
             <span class="ml-auto">
-              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="close('mail')" />
+              <font-awesome-icon :icon="['fas', 'times']" @click.prevent="closeModal('mail')" />
             </span>
           </div>
         </div>
@@ -268,7 +268,7 @@
               </button>
             </div>
             <template v-if="view === 'addressee'">
-              <ValidationObserver tag="div" ref="mailForm">
+              <ValidationObserver ref="mailForm" slim>
                 <form>
                   <label for="adminName" class="modal__label mb-2">管理員名稱</label>
                   <input
@@ -279,7 +279,7 @@
                     disabled
                   />
                   <label for="userid" class="modal__label mb-2">信箱*</label>
-                  <ValidationProvider tag="div" rules="required" name="userid" v-slot="{ failed }">
+                  <ValidationProvider rules="required" v-slot="{ failed }" slim>
                     <div class="modal__group  mb-3">
                       <input
                         type="text"
@@ -292,7 +292,7 @@
                     </div>
                   </ValidationProvider>
                   <label for="subject" class="modal__label mb-2">標題*</label>
-                  <ValidationProvider tag="div" rules="required" name="subject" v-slot="{ failed }">
+                  <ValidationProvider rules="required" v-slot="{ failed }" slim>
                     <input
                       type="text"
                       id="subject"
@@ -321,7 +321,7 @@
         </div>
         <div class="row no-gutters" v-if="view === 'addressee'">
           <div class="modal__footer px-3 py-2">
-            <button class="btn btn--gray" @click.prevent="close('mail')">
+            <button class="btn btn--gray" @click.prevent="closeModal('mail')">
               取消
             </button>
             <button class="btn btn--primary ml-2" @click.prevent="mailSend('mail')">
@@ -360,8 +360,9 @@ export default {
     beforeOpen() {
       this.maxWidth = window.innerWidth - 30;
     },
-    close(modal) {
-      this.$store.commit('modal/CLOSEMODAL', modal);
+    closeModal(modal) {
+      this.$store.commit('modal/CLOSEMODAL', { modal });
+      this.$store.commit('image/DATACLEAR');
       this.input = { username: '', userid: '' };
       this.mail = {
         nickname: JSON.parse(localStorage.getItem('account')).nickname,
@@ -379,15 +380,14 @@ export default {
       this.loading = true;
       await this.$store.dispatch('users/registerUser', { id, username, userid });
       this.loading = false;
-      this.$store.commit('modal/CLOSEMODAL', modal);
-      this.input = { username: '', userid: '' };
+      this.closeModal(modal);
     },
     async deleteUser(modal) {
       const id = this.user._id;
       this.loading = true;
       await this.$store.dispatch('users/deleteUser', { id });
       this.loading = false;
-      this.$store.commit('modal/CLOSEMODAL', modal);
+      this.closeModal(modal);
     },
     async adjustUser(modal) {
       const id = this.user._id;
@@ -395,21 +395,21 @@ export default {
       this.loading = true;
       await this.$store.dispatch('users/adjustAuth', { id, auth });
       this.loading = false;
-      this.$store.commit('modal/CLOSEMODAL', modal);
+      this.closeModal(modal);
     },
     async mailSend(modal) {
       const valid = await this.$refs.mailForm.validate();
       if (!valid) return;
       const { file } = this;
       await this.$store.dispatch('image/uploadImage', { file });
-      const payload = {
+      const mailData = {
         nickname: this.mail.nickname,
         email: this.mail.userid + this.mail.domain,
         subject: this.mail.subject,
         imgUrl: this.imgUrl,
         content: this.mail.content,
       };
-      await this.$store.dispatch('mail/mailSend', { payload });
+      await this.$store.dispatch('mail/mailSend', { mailData });
       this.mail = {
         nickname: JSON.parse(localStorage.getItem('account')).nickname,
         userid: '',
@@ -417,7 +417,7 @@ export default {
         subject: '',
         content: '',
       };
-      this.$store.commit('modal/CLOSEMODAL', modal);
+      this.closeModal(modal);
     },
   },
   computed: {

@@ -26,12 +26,12 @@
 .main-layout {
   width: 100%;
   position: relative;
-  margin-top: 66px;
-  margin-left: 0px;
+  padding-top: 66px;
+  padding-left: 0px;
   transition: all 0.3s;
   @include desktop {
     .openSidebar & {
-      margin-left: 280px;
+      padding-left: 280px;
     }
   }
 }

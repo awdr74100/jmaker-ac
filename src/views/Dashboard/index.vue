@@ -3,10 +3,10 @@
     <div class="header-layout">
       <Header />
     </div>
+    <div class="sidebar-layout">
+      <Sidebar />
+    </div>
     <div class="row no-gutters">
-      <div class="sidebar-layout">
-        <Sidebar />
-      </div>
       <div class="main-layout">
         <router-view></router-view>
       </div>

@@ -1,7 +1,3 @@
-import Vue from 'vue';
-
-const vm = Vue.prototype;
-
 export default {
   strict: true,
   namespaced: true,
@@ -10,11 +6,11 @@ export default {
   },
   mutations: {
     OPENMODAL(state, { modal, user = {} }) {
-      vm.$modal.show(modal);
+      this._vm.$modal.show(modal);
       state.user = user;
     },
-    CLOSEMODAL(state, modal) {
-      vm.$modal.hide(modal);
+    CLOSEMODAL(state, { modal }) {
+      this._vm.$modal.hide(modal);
       state.user = {};
     },
   },

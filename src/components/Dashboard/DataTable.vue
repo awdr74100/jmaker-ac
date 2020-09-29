@@ -35,7 +35,7 @@
         </template>
         <template v-else>
           <tr v-for="(item, index) in sliceAndSortUsers" :key="index">
-            <td>{{ (page - 1) * column + (index + 1) }}</td>
+            <td>{{ (page - 1) * row + (index + 1) }}</td>
             <td>{{ item._id }}</td>
             <td>{{ item.created_at | datetime }}</td>
             <td>unknown</td>
@@ -57,12 +57,12 @@
           <td colspan="7">
             <div class="d-flex align-items-center justify-content-end my-1">
               <div class="mr-4">
-                <Select @callToggleColumn="toggleColumn" />
+                <Select @callToggleRow="toggleRow" />
               </div>
               <div>
                 <Pagination
                   :length="filterUsers.length"
-                  :column="column"
+                  :row="row"
                   @callTogglePage="togglePage"
                 />
               </div>
@@ -106,7 +106,7 @@
         </template>
         <template v-else>
           <tr v-for="(item, index) in sliceAndSortUsers" :key="index">
-            <td>{{ (page - 1) * column + (index + 1) }}</td>
+            <td>{{ (page - 1) * row + (index + 1) }}</td>
             <td>{{ item._id }}</td>
             <td>{{ item.register_at | datetime }}</td>
             <td>{{ item.userid }}</td>
@@ -129,12 +129,12 @@
           <td colspan="7">
             <div class="d-flex align-items-center justify-content-end my-1">
               <div class="mr-4">
-                <Select @callToggleColumn="toggleColumn" />
+                <Select @callToggleRow="toggleRow" />
               </div>
               <div>
                 <Pagination
                   :length="filterUsers.length"
-                  :column="column"
+                  :row="row"
                   @callTogglePage="togglePage"
                 />
               </div>
@@ -165,7 +165,7 @@ export default {
     return {
       sort: 'sortDown',
       page: 1,
-      column: 8,
+      row: 8,
     };
   },
   methods: {
@@ -178,8 +178,8 @@ export default {
     togglePage(page) {
       this.page = page;
     },
-    toggleColumn(column) {
-      this.column = column;
+    toggleRow(row) {
+      this.row = row;
     },
   },
   computed: {
@@ -193,7 +193,7 @@ export default {
       const vm = this;
       const users = JSON.parse(JSON.stringify(vm.users));
       const [sortA, sortB] = vm.sort === 'sortUp' ? [1, -1] : [-1, 1];
-      const [startIndex, endIndex] = [(vm.page - 1) * this.column, vm.page * this.column];
+      const [startIndex, endIndex] = [(vm.page - 1) * vm.row, vm.page * vm.row];
       return users
         .filter((item) => {
           if (vm.view === 'adjust') return item.register_at !== null;

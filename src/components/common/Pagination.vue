@@ -26,7 +26,7 @@
 export default {
   props: {
     length: Number,
-    column: Number,
+    row: Number,
   },
   data() {
     return {
@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     pages() {
-      return Math.ceil(this.length / this.column);
+      return Math.ceil(this.length / this.row);
     },
   },
 };

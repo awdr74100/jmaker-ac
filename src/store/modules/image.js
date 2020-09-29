@@ -24,19 +24,19 @@ export default {
       const url = `${process.env.VUE_APP_BASE_URL}/api/admin/upload`;
       const formData = new FormData();
       formData.append('image', file);
-      const options = { root: true };
-      commit('LOADING', true, options);
+      const root = { root: true };
+      commit('LOADING', true, root);
       try {
-        const res = await axios.post(url, formData);
-        if (!res.data.success) {
-          commit('LOADING', false, options);
-          dispatch('alert/updateMessage', { message: res.data.message, status: 'danger' }, options);
+        const { data } = await axios.post(url, formData);
+        if (!data.success) {
+          commit('LOADING', false, root);
+          dispatch('alert/updateMessage', { message: data.message, status: 'danger' }, root);
           return;
         }
-        commit('UPLOADIMAGE', res.data.imgUrl);
+        commit('URLSAVE', data.imgUrl);
       } catch (error) {
-        commit('LOADING', false, options);
-        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, options);
+        commit('LOADING', false, root);
+        dispatch('alert/updateMessage', { message: error.message, status: 'danger' }, root);
       }
     },
   },
@@ -47,7 +47,12 @@ export default {
     DATASAVE(state, file) {
       state.file = file;
     },
-    UPLOADIMAGE(state, imgUrl) {
+    DATACLEAR(state) {
+      state.file = '';
+      state.base64 = '';
+      state.imgUrl = '';
+    },
+    URLSAVE(state, imgUrl) {
       state.imgUrl = imgUrl;
     },
   },
