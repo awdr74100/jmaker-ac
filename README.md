@@ -1,4 +1,4 @@
-# J-MAKER 實驗室門禁管制系統
+# J-Maker 實驗室門禁管制系統
 
 此為未來大學專班地下室門禁管制系統後台，採取前後端分離架構，硬體端使用的 ESP8266、ESP32、Raspberry Pi 可透過開設出的 RESTful API 完成與資料庫的溝通，操作人員可由前端串接 API 後形成的網站後台線上管理所有用戶。
 
@@ -107,7 +107,7 @@ Demo：https://jmaker-ac.netlify.app
 
 ![loading](https://i.imgur.com/R97MdCm.png)
 
-骨架屏 (使用 vue-loading-skeleton)
+骨架屏 & 進度條
 
 ![skeleton](https://i.imgur.com/uihkcRm.png)
 
