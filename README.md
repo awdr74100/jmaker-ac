@@ -17,9 +17,10 @@ Demo：https://jmaker-ac.netlify.app
 - 第一道進出入自動門 ✔
 - 專題討論空間自動門 ✔
 - 專題討論空間硬體設備 ✔
-- CNC 器具間權限控管
+- CNC 器具間權限控管 ✔
+- 違規事項訊息推播 ✔
 - 3D 列印器材間權限控管
-- 影像辨識照片上傳
+- 供影像辨識用圖片上傳
 
 ## 系統功能
 
@@ -27,6 +28,7 @@ Demo：https://jmaker-ac.netlify.app
 
   - 用戶加入
   - 權限檢查
+  - ...
 
 - 控制台
 
@@ -37,6 +39,7 @@ Demo：https://jmaker-ac.netlify.app
   - 調整訪問權限
   - 圖片上傳
   - 發送郵件
+  - ...
 
 - 登入及驗證
 
@@ -50,7 +53,7 @@ Demo：https://jmaker-ac.netlify.app
 1. 前端
 
    - Vue.js / Vuex / Vue Router / Vue CLI 4
-   - Webpack / Prerender SPA
+   - Webpack
    - JavaScript (ES6+)
    - Web APIs (FileRender、FormData、DragEvent)
    - AJAX / Axios
@@ -65,13 +68,15 @@ Demo：https://jmaker-ac.netlify.app
    - Node.js / Express.js
    - MongoDB / Mongoose (ODM)
    - JWT / Cookie
+   - RESTful API
    - Argon2
    - Nodemailer
    - Vercel Deployment
 
 3. 代碼風格
 
-   - ESLint (Airbnb) / Prettier
+   - ESLint (Airbnb)
+   - Prettier
 
 4. 第三方 API
 
@@ -96,52 +101,52 @@ Demo：https://jmaker-ac.netlify.app
 
 登入頁面
 
-![login](https://i.imgur.com/iTRFHPo.png)
+![login](https://i.imgur.com/foUsZcK.png)
 
-載入動畫
+載入動畫 (使用 CSS Animation)
 
-![loading](https://i.imgur.com/rpjJJj7.png)
+![loading](https://i.imgur.com/R97MdCm.png)
 
-骨架屏
+骨架屏 (使用 vue-loading-skeleton)
 
-![skeleton](https://i.imgur.com/yxmJ4pp.png)
+![skeleton](https://i.imgur.com/uihkcRm.png)
 
 實體用戶註冊
 
-![register](https://i.imgur.com/CLsiyI0.png)
+![register](https://i.imgur.com/ARK14Bs.png)
 
-註冊視窗
+互動視窗 (註冊用戶)
 
-![registerModal](https://i.imgur.com/6O5wMer.png)
+![registerModal](https://i.imgur.com/1pGsy0G.png)
 
-刪除視窗
+互動視窗 (刪除用戶)
 
-![deleteModal](https://i.imgur.com/UyQwCy6.png)
+![deleteModal](https://i.imgur.com/Lb09srh.png)
 
 調整用戶權限
 
-![adjust](https://i.imgur.com/xiSbekd.png)
+![adjust](https://i.imgur.com/xxmZSqh.png)
 
-調整視窗
+互動視窗 (調整用戶)
 
-![adjustModal](https://i.imgur.com/S17tDSN.png)
+![adjustModal](https://i.imgur.com/NvSz47A.png)
 
 違規訊息推播
 
-![mail](https://i.imgur.com/atafO2q.png)
+![mail](https://i.imgur.com/PqCLijY.png)
 
-推播視窗
+違規訊息推播 (使用 DragEvent)
 
-![mailModal](https://i.imgur.com/iDmuvON.png)
+![mailDrop](https://i.imgur.com/NcVnoho.png)
 
-預覽圖片 (使用 FileRender 完成)
+互動視窗 (選擇用戶)
 
-![preview](https://i.imgur.com/S97Wz1L.png)
+![mailModal](https://i.imgur.com/Gv5rIbe.png)
+
+預覽圖片 (使用 FileRender)
+
+![preview](https://i.imgur.com/GcJXsAA.png)
 
 查詢用戶狀態
 
-![search](https://i.imgur.com/ONtGQN0.png)
-
-## PWA
-
-![PWA](https://i.imgur.com/qOcgZML.png)
+![search](https://i.imgur.com/PokIDlj.png)
