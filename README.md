@@ -1,6 +1,13 @@
-# J-Maker 實驗室門禁管制系統
+<div align="center">
+   <a href="https://jmaker-ac.netlify.app" title="JammeryHQ" target="_blank">
+      <img src="https://raw.githubusercontent.com/awdr74100/jmaker-ac/master/src/assets/img/logo.png" alt="maynooth" width="100">
+   </a>
+   <h2>J-Maker 實驗室門禁管制系統</h2>
+</div>
 
 此為未來大學專班地下室門禁管制系統後台，採取前後端分離架構，硬體端使用的 ESP8266、ESP32、Raspberry Pi 可透過開設出的 RESTful API 完成與資料庫的溝通，操作人員可由前端串接 API 後形成的網站後台線上管理所有用戶。
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5a6cab16-bf71-489b-ba5e-59ede1af1b01/deploy-status)](https://app.netlify.com/sites/jmaker-ac/deploys)
 
 ## 線上演示
 
