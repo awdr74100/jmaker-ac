@@ -5,7 +5,7 @@
    <h2>J-Maker 實驗室門禁管制系統</h2>
 </div>
 
-此為未來大學專班地下室門禁管制系統後台，採取前後端分離架構，硬體端使用的 ESP8266、ESP32、Raspberry Pi 可透過開設出的 RESTful API 完成與資料庫的溝通，操作人員可由前端串接 API 後形成的網站後台線上管理所有用戶。
+此為未來大學專班地下室門禁管制系統後台，採取前後端分離架構，硬體端使用的 ESP8266、ESP32、Raspberry Pi 可透過開設出的 RESTful API 完成與資料庫的溝通，操作人員可由線上網站管理所有系統成員，比如 CRUD 等操作。
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5a6cab16-bf71-489b-ba5e-59ede1af1b01/deploy-status)](https://app.netlify.com/sites/jmaker-ac/deploys)
 
@@ -16,6 +16,7 @@ Demo：https://jmaker-ac.netlify.app
 ## 更新日誌
 
 - 2020/08/04：修復 Chrome 80+ 針對跨域 Cookie 的規則調整 (SameSite 必須從預設 Lax 改為 None 同時加上 Secure 屬性)
+- 2020/09/29：修復 IOS 裝置中 Chrome 與 Safari 樣式兼容問題
 
 ## 設計說明
 
@@ -31,29 +32,15 @@ Demo：https://jmaker-ac.netlify.app
 
 ## 系統功能
 
-- 硬體端
-
-  - 用戶加入
-  - 權限檢查
-  - ...
-
-- 控制台
-
-  - 取得所有用戶
-  - 取得指定用戶
-  - 刪除指定用戶
-  - 實體用戶註冊
-  - 調整訪問權限
-  - 圖片上傳
-  - 發送郵件
-  - ...
-
-- 登入及驗證
-
-  - 管理員註冊
-  - 管理員登入
-  - 檢查是否持續登入
-  - 管理員登出
+- 基於 Token 的身分驗證機制 (JWT)
+- 自製 Grid System 與 Spacing 完成響應式設計
+- 串接 Imgur API 上傳圖片
+- 使用 Nodemailer 進行訊息推播
+- 使用 Vuex 管理狀態
+- 管理員 (CRUD)
+- 系統成員 (CRUD)
+- 成員搜尋
+- 權限檢查
 
 ## 使用技術
 
@@ -62,12 +49,12 @@ Demo：https://jmaker-ac.netlify.app
    - Vue.js / Vuex / Vue Router / Vue CLI 4
    - Webpack
    - JavaScript (ES6+)
-   - Web APIs (FileRender、FormData、DragEvent)
    - AJAX / Axios
-   - SCSS
    - OOCSS / BEM / 7-1 Pattern
+   - SCSS
    - RWD
    - PWA
+   - Web APIs (FileRender、FormData、DragEvent、Web Storage)
    - Netlify Deployment
 
 2. 後端
@@ -100,11 +87,11 @@ Demo：https://jmaker-ac.netlify.app
    - vee-validate
 
 6. 其他
-   - 自製 Grid System
-   - 自製 Spacing
-   - 自製 Theme Color
+   - Responsive Grid System
+   - Responsive Spacing
+   - Theme Color
 
-## 系統介面
+## 應用介面
 
 登入頁面
 
@@ -118,7 +105,7 @@ Demo：https://jmaker-ac.netlify.app
 
 ![skeleton](https://i.imgur.com/uihkcRm.png)
 
-實體用戶註冊
+實體用戶註冊頁面
 
 ![register](https://i.imgur.com/ARK14Bs.png)
 
@@ -130,7 +117,7 @@ Demo：https://jmaker-ac.netlify.app
 
 ![deleteModal](https://i.imgur.com/Lb09srh.png)
 
-調整用戶權限
+調整用戶權限頁面
 
 ![adjust](https://i.imgur.com/xxmZSqh.png)
 
@@ -138,11 +125,11 @@ Demo：https://jmaker-ac.netlify.app
 
 ![adjustModal](https://i.imgur.com/NvSz47A.png)
 
-違規訊息推播
+違規訊息推播頁面
 
 ![mail](https://i.imgur.com/PqCLijY.png)
 
-違規訊息推播 (使用 DragEvent)
+拖曳上傳圖片 (使用 DragEvent)
 
 ![mailDrop](https://i.imgur.com/NcVnoho.png)
 
@@ -154,6 +141,6 @@ Demo：https://jmaker-ac.netlify.app
 
 ![preview](https://i.imgur.com/GcJXsAA.png)
 
-查詢用戶狀態
+互動視窗 (查詢用戶)
 
 ![search](https://i.imgur.com/PokIDlj.png)
