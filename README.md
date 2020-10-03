@@ -11,7 +11,8 @@
 
 ## 線上演示
 
-Demo：https://jmaker-ac.netlify.app
+- Demo：https://jmaker-ac.netlify.app
+- API Doc：https://github.com/awdr74100/jmaker-ac-api
 
 ## 更新日誌
 
