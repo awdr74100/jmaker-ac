@@ -1,6 +1,6 @@
 <div align="center">
    <a href="https://jmaker-ac.netlify.app" title="JammeryHQ" target="_blank">
-      <img src="https://raw.githubusercontent.com/awdr74100/jmaker-ac/master/src/assets/img/logo.png" alt="maynooth" width="100">
+      <img src="https://raw.githubusercontent.com/awdr74100/jmaker-ac/master/src/assets/img/logo.png" alt="JMaker" width="100">
    </a>
    <h2>J-Maker 實驗室門禁管制系統</h2>
 </div>
@@ -31,17 +31,18 @@
 - 3D 列印器材間權限控管
 - 供影像辨識用圖片上傳
 
-## 系統功能
+## 專案功能
 
 - 基於 Token 的身分驗證機制 (JWT)
 - 自製 Grid System 與 Spacing 完成響應式設計
-- 串接 Imgur API 上傳圖片
+- 使用 Imgur API 實作上傳圖片功能
 - 使用 Nodemailer 進行訊息推播
+- 使用 Argon2 加解密使用者密碼
 - 使用 Vuex 管理狀態
 - 管理員 (CRUD)
 - 系統成員 (CRUD)
-- 成員搜尋
 - 權限檢查
+- 骨架屏載入
 
 ## 使用技術
 
